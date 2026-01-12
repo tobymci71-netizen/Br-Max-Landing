@@ -37,7 +37,7 @@ export default function ContactUs() {
                     and stay updated with the latest news and features.
                   </p>
                   <a
-                    href="https://discord.gg/6ECnujbEYq"
+                    href="https://discord.gg/Ef3EuKSjaR"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold transition-colors shadow-md"

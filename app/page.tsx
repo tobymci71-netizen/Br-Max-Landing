@@ -650,7 +650,7 @@ export default function Home() {
 
       <main>
         {/* Hero Section */}
-        <section className="min-h-screen flex items-center justify-center pt-20 border-l border-r border-border max-w-6xl mx-auto relative overflow-hidden">
+        <section className="min-h-screen flex items-center justify-center pt-32 border-l border-r border-border max-w-6xl mx-auto relative overflow-hidden">
           {/* Background Graphics */}
           <div className="absolute inset-0 pointer-events-none">
             {/* Grid pattern */}
