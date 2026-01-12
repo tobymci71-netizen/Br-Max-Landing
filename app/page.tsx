@@ -430,7 +430,7 @@ export default function Home() {
     {
       name: "Starter",
       tokens: 1000,
-      price: 9.99,
+      price: 29.99,
       videosRange: "5-20",
       features: [
         "1,000 tokens",
@@ -443,7 +443,7 @@ export default function Home() {
     {
       name: "Creator",
       tokens: 5000,
-      price: 19.99,
+      price: 39.99,
       videosRange: "25-100",
       features: [
         "5,000 tokens",
@@ -457,7 +457,7 @@ export default function Home() {
     {
       name: "Pro",
       tokens: 15000,
-      price: 59.99,
+      price: 99.99,
       videosRange: "75-300",
       features: [
         "15,000 tokens",
