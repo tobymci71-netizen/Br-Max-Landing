@@ -443,7 +443,7 @@ export default function Home() {
     {
       name: "Creator",
       tokens: 5000,
-      price: 39.99,
+      price: 49.99,
       videosRange: "25-100",
       features: [
         "5,000 tokens",
