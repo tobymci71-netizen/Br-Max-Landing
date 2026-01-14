@@ -400,9 +400,9 @@ export default function Home() {
           />
         </svg>
       ),
-      title: "No Subscriptions",
+      title: "Continuous Progress",
       description:
-        "Pay only for what you use with our token system. No monthly fees, no locked-in contracts. Full control over your spending.",
+        "Subscribe and keep your projects moving non-stop. Monthly plans ensure your work never pauses - consistent output, every single month.",
     },
     {
       icon: (
@@ -433,11 +433,11 @@ export default function Home() {
       price: 29.99,
       videosRange: "5-20",
       features: [
-        "1,000 tokens",
-        "5-20 videos (based on length)",
+        "5-20 videos per month",
         "Full HD export",
         "All features included",
-        "No expiration",
+        "Continuous monthly output",
+        "Cancel anytime",
       ],
     },
     {
@@ -446,11 +446,11 @@ export default function Home() {
       price: 49.99,
       videosRange: "25-100",
       features: [
-        "5,000 tokens",
-        "25-100 videos (based on length)",
+        "25-100 videos per month",
         "Full HD export",
         "All features included",
-        "No expiration",
+        "Continuous monthly output",
+        "Cancel anytime",
       ],
       popular: true,
     },
@@ -460,20 +460,20 @@ export default function Home() {
       price: 99.99,
       videosRange: "75-300",
       features: [
-        "15,000 tokens",
-        "75-300 videos (based on length)",
+        "75-300 videos per month",
         "Full HD export",
         "All features included",
-        "No expiration",
+        "Continuous monthly output",
+        "Priority support",
       ],
     },
   ];
 
   const faqs = [
     {
-      question: "How does the token system work?",
+      question: "How does the subscription work?",
       answer:
-        "Each video generation costs approximately 100 tokens depending on length and complexity. You buy tokens once and use them whenever you want - they never expire. No recurring charges, no subscriptions.",
+        "With your subscription, you get continuous access to all features and consistent video generation every month. Your work never stops - as long as you're subscribed, we keep delivering results.",
     },
     {
       question: "What video formats do you support?",
@@ -486,9 +486,9 @@ export default function Home() {
         "Yes! We offer a money-back guarantee. If you're not satisfied with BR Max, contact us within 24 hours of purchase for a full refund. See our refund policy for details.",
     },
     {
-      question: "Do tokens expire?",
+      question: "What happens with my subscription?",
       answer:
-        "No! Your tokens never expire. Buy once and use them at your own pace - whether that's today, next month, or next year.",
+        "Your subscription keeps everything running smoothly month after month. Continuous service, continuous results - your momentum never stops as long as you're with us.",
     },
     {
       question: "How realistic do the videos look?",
@@ -754,8 +754,8 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
                 The fastest way to create authentic iMessage-style videos for
-                TikTok, Instagram, and YouTube. No subscriptions, no
-                complexity—just pure creative freedom.
+                TikTok, Instagram, and YouTube. Subscribe once and your
+                creative work never stops.
               </motion.p>
 
               <motion.div
@@ -1518,7 +1518,7 @@ export default function Home() {
                 Simple, transparent pricing
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Pay once, use forever. No subscriptions, no hidden fees.
+                Subscribe and keep the momentum going. Continuous work, no interruptions.
               </p>
             </motion.div>
 
@@ -1605,7 +1605,7 @@ export default function Home() {
                     </motion.span>
                     <span className="text-sm text-muted-foreground">
                       {" "}
-                      one-time
+                      /month
                     </span>
                   </div>
                   <ul className="space-y-3 mb-8 flex-grow">

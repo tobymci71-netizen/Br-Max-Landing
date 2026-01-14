@@ -105,9 +105,9 @@ export default function RefundPolicy() {
                     </p>
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">One-Time Purchases</h3>
+                    <h3 className="font-semibold text-foreground mb-1">New Subscriptions</h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">
-                      One-time purchases are eligible for refunds only within the 24-hour window as specified above.
+                      New subscriptions are eligible for refunds only within the 24-hour window as specified above.
                     </p>
                   </div>
                 </div>

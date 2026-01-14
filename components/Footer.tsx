@@ -25,8 +25,8 @@ export default function Footer() {
           </Link>
 
           <p className="text-sm text-muted-foreground">
-            Create stunning texting videos in minutes. No subscriptions, just
-            tokens.
+            Create stunning texting videos in minutes. Subscribe and your work
+            never stops.
           </p>
         </div>
 

@@ -38,6 +38,11 @@ const faqData: FAQItem[] = [
     answer:
       "Getting started is simple! Sign up for our free trial, connect your existing systems, and our onboarding team will help you set up your first custom billing workflow within 24 hours.",
   },
+  {
+    question: "Why subscribe instead of one-time purchase?",
+    answer:
+      "With a subscription, your work never stops. You get continuous updates, ongoing support, and uninterrupted service every month. Unlike one-time purchases, your projects keep moving forward with consistent progress and regular improvements - no gaps, no delays, just steady momentum.",
+  },
 ]
 
 function ChevronDownIcon({ className }: { className?: string }) {

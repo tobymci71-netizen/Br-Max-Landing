@@ -50,9 +50,9 @@ export default function PricingSection() {
 
           {/* Description */}
           <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            Scale your operations with flexible pricing that grows with your team.
+            Subscribe and keep your projects moving forward without interruption.
             <br />
-            Start free, upgrade when you're ready.
+            Continuous work, continuous results - your momentum never stops.
           </div>
         </div>
       </div>
@@ -130,7 +130,7 @@ export default function PricingSection() {
                 <div className="self-stretch flex flex-col justify-start items-start gap-2">
                   <div className="text-[rgba(55,50,47,0.90)] text-lg font-medium leading-7 font-sans">Starter</div>
                   <div className="w-full max-w-[242px] text-[rgba(41,37,35,0.70)] text-sm font-normal leading-5 font-sans">
-                    Perfect for individuals and small teams getting started.
+                    Get started and experience uninterrupted workflow.
                   </div>
                 </div>
 
@@ -210,7 +210,7 @@ export default function PricingSection() {
                 <div className="self-stretch flex flex-col justify-start items-start gap-2">
                   <div className="text-[#FBFAF9] text-lg font-medium leading-7 font-sans">Professional</div>
                   <div className="w-full max-w-[242px] text-[#B2AEA9] text-sm font-normal leading-5 font-sans">
-                    Advanced features for growing teams and businesses.
+                    Non-stop progress with advanced features every month.
                   </div>
                 </div>
 
@@ -292,7 +292,7 @@ export default function PricingSection() {
                 <div className="self-stretch flex flex-col justify-start items-start gap-2">
                   <div className="text-[rgba(55,50,47,0.90)] text-lg font-medium leading-7 font-sans">Enterprise</div>
                   <div className="w-full max-w-[242px] text-[rgba(41,37,35,0.70)] text-sm font-normal leading-5 font-sans">
-                    Complete solution for large organizations and enterprises.
+                    Unlimited capacity - your work never pauses, ever.
                   </div>
                 </div>
 
