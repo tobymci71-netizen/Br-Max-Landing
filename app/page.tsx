@@ -431,7 +431,7 @@ export default function Home() {
       name: "Starter",
       tokens: 1000,
       price: 29.99,
-      originalPrice: 39.99,
+      originalPrice: 49.99,
       videosRange: "5-20",
       features: [
         "5-20 videos per month",
@@ -445,7 +445,7 @@ export default function Home() {
       name: "Creator",
       tokens: 5000,
       price: 49.99,
-      originalPrice: 64.99,
+      originalPrice: 69.99,
       videosRange: "25-100",
       features: [
         "25-100 videos per month",
@@ -460,7 +460,7 @@ export default function Home() {
       name: "Pro",
       tokens: 15000,
       price: 99.99,
-      originalPrice: 129.99,
+      originalPrice: 119.99,
       videosRange: "75-300",
       features: [
         "75-300 videos per month",
