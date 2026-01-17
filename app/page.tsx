@@ -431,6 +431,7 @@ export default function Home() {
       name: "Starter",
       tokens: 1000,
       price: 29.99,
+      originalPrice: 39.99,
       videosRange: "5-20",
       features: [
         "5-20 videos per month",
@@ -444,6 +445,7 @@ export default function Home() {
       name: "Creator",
       tokens: 5000,
       price: 49.99,
+      originalPrice: 64.99,
       videosRange: "25-100",
       features: [
         "25-100 videos per month",
@@ -458,6 +460,7 @@ export default function Home() {
       name: "Pro",
       tokens: 15000,
       price: 99.99,
+      originalPrice: 129.99,
       videosRange: "75-300",
       features: [
         "75-300 videos per month",
@@ -1590,22 +1593,39 @@ export default function Home() {
                       {pkg.tokens.toLocaleString()} tokens
                     </p>
                   </div>
-                  <div className="mb-6">
+                  <div className="mb-6 flex items-baseline gap-2">
+                    {/* Original Price (Strikethrough) */}
                     <motion.span
-                      className="text-4xl font-bold text-foreground"
-                      initial={{ opacity: 0, y: 20 }}
+                      className="text-xl font-medium text-muted-foreground line-through opacity-80"
+                      initial={{ opacity: 0, scale: 0.9 }}
                       animate={
                         pricingInView
-                          ? { opacity: 1, y: 0 }
-                          : { opacity: 0, y: 20 }
+                          ? { opacity: 0.8, scale: 1 }
+                          : { opacity: 0, scale: 0.9 }
                       }
                       transition={{ delay: 0.3 + index * 0.1 }}
                     >
-                      ${pkg.price}
+                      ${pkg.originalPrice}
                     </motion.span>
-                    <span className="text-sm text-muted-foreground">
-                      {" "}
-                      /month
+
+                    {/* Current Price */}
+                    <span>
+                      <motion.span
+                        className="text-4xl font-bold text-foreground"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={
+                          pricingInView
+                            ? { opacity: 1, y: 0 }
+                            : { opacity: 0, y: 20 }
+                        }
+                        transition={{ delay: 0.3 + index * 0.1 }}
+                      >
+                        ${pkg.price}
+                      </motion.span>
+                      <span className="text-sm text-muted-foreground">
+                        {" "}
+                        /month
+                      </span>
                     </span>
                   </div>
                   <ul className="space-y-3 mb-8 flex-grow">
