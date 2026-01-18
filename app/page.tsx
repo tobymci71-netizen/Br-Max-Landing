@@ -429,12 +429,12 @@ export default function Home() {
   const tokenPackages = [
     {
       name: "Starter",
-      tokens: 1000,
-      price: 29.99,
-      originalPrice: 49.99,
-      videosRange: "5-20",
+      tokens: 800,
+      price: 14.99,
+      originalPrice: 34.99,
+      videosRange: "8-12",
       features: [
-        "5-20 videos per month",
+        "8-12 videos per month",
         "Full HD export",
         "All features included",
         "Continuous monthly output",
@@ -443,12 +443,12 @@ export default function Home() {
     },
     {
       name: "Creator",
-      tokens: 5000,
-      price: 49.99,
-      originalPrice: 69.99,
-      videosRange: "25-100",
+      tokens: 1600,
+      price: 24.99,
+      originalPrice: 45.99,
+      videosRange: "15-20",
       features: [
-        "25-100 videos per month",
+        "15-20 videos per month",
         "Full HD export",
         "All features included",
         "Continuous monthly output",
@@ -458,12 +458,12 @@ export default function Home() {
     },
     {
       name: "Pro",
-      tokens: 15000,
-      price: 99.99,
-      originalPrice: 119.99,
-      videosRange: "75-300",
+      tokens: 3200,
+      price: 39.99,
+      originalPrice: 59.99,
+      videosRange: "30-45",
       features: [
-        "75-300 videos per month",
+        "30-45 videos per month",
         "Full HD export",
         "All features included",
         "Continuous monthly output",
