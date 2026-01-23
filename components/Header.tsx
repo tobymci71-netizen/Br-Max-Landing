@@ -71,6 +71,12 @@ export default function Header() {
             >
               FAQ
             </a>
+            <Link
+              href="/affiliate"
+              className="text-sm text-accent-primary hover:text-accent-primary/80 transition-colors font-medium"
+            >
+              Affiliate
+            </Link>
           </nav>
 
           {/* Actions */}
