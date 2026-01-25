@@ -244,7 +244,6 @@ export default function AffiliatePage() {
     {
       title: "Eligibility",
       items: [
-        "Must be 18 years or older to participate",
         "Must have an active social media account",
         "One affiliate account per person",
         "Prizes are paid via PayPal or crypto",
@@ -256,7 +255,7 @@ export default function AffiliatePage() {
         "Commissions are tracked via your unique link",
         "30-day cookie duration for referrals",
         "Minimum payout threshold: $50",
-        "Payments processed monthly",
+        "Payments processed weekly",
       ],
     },
   ];
