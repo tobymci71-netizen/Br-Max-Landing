@@ -832,7 +832,6 @@ export default function AffiliatePage() {
                 Ready to Start?
               </h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-                This campaign runs until <span className="font-semibold text-foreground">February 1st</span>.
                 Don&apos;t miss out on the easiest side hustle of the year.
               </p>
 
