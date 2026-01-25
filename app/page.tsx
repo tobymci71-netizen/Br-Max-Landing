@@ -1649,6 +1649,20 @@ export default function Home() {
                       </p>
                     </div>
                     <div className="mb-6 flex items-baseline gap-2">
+                      {/* Original Price (Strikethrough) */}
+                      <motion.span
+                        className="text-xl font-medium text-muted-foreground line-through opacity-80"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={
+                          pricingInView
+                            ? { opacity: 0.8, scale: 1 }
+                            : { opacity: 0, scale: 0.9 }
+                        }
+                        transition={{ delay: 0.3 + index * 0.1 }}
+                      >
+                        ${(pkg.priceUSD + 20).toFixed(2)}
+                      </motion.span>
+
                       {/* Current Price */}
                       <span>
                         <motion.span
