@@ -17,6 +17,16 @@ interface TikTokStats {
   title: string;
 }
 
+interface TokenPackage {
+  id: string;
+  created_at: string;
+  name: string;
+  tokens: number;
+  priceUSD: number;
+  features: string[];
+  popular: boolean;
+}
+
 interface CachedStats {
   data: Record<string, TikTokStats>;
   timestamp: number;
@@ -137,6 +147,8 @@ export default function Home() {
     {}
   );
   const [statsLoading, setStatsLoading] = useState(true);
+  const [tokenPackages, setTokenPackages] = useState<TokenPackage[]>([]);
+  const [packagesLoading, setPackagesLoading] = useState(true);
 
   // Define examples before hooks (to avoid "Cannot access variable before declaration" error)
   const examples = [
@@ -261,6 +273,25 @@ export default function Home() {
     };
 
     fetchAllStats();
+  }, []);
+
+  // Fetch token packages from API
+  useEffect(() => {
+    const fetchTokenPackages = async () => {
+      try {
+        const response = await fetch('https://studio.brmax.xyz/api/token-packages');
+        if (response.ok) {
+          const data: TokenPackage[] = await response.json();
+          setTokenPackages(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch token packages:', error);
+      } finally {
+        setPackagesLoading(false);
+      }
+    };
+
+    fetchTokenPackages();
   }, []);
 
   // Animation variants
@@ -423,52 +454,6 @@ export default function Home() {
       title: "Export Ready",
       description:
         "Download high-quality MP4 files optimized for TikTok, Instagram, YouTube Shorts, and every social platform.",
-    },
-  ];
-
-  const tokenPackages = [
-    {
-      name: "Starter",
-      tokens: 1000,
-      price: 29.99,
-      originalPrice: 49.99,
-      videosRange: "5-20",
-      features: [
-        "5-20 videos per month",
-        "Full HD export",
-        "All features included",
-        "Continuous monthly output",
-        "Cancel anytime",
-      ],
-    },
-    {
-      name: "Creator",
-      tokens: 5000,
-      price: 49.99,
-      originalPrice: 69.99,
-      videosRange: "25-100",
-      features: [
-        "25-100 videos per month",
-        "Full HD export",
-        "All features included",
-        "Continuous monthly output",
-        "Cancel anytime",
-      ],
-      popular: true,
-    },
-    {
-      name: "Pro",
-      tokens: 15000,
-      price: 99.99,
-      originalPrice: 119.99,
-      videosRange: "75-300",
-      features: [
-        "75-300 videos per month",
-        "Full HD export",
-        "All features included",
-        "Continuous monthly output",
-        "Priority support",
-      ],
     },
   ];
 
@@ -1576,147 +1561,162 @@ export default function Home() {
               animate={pricingInView ? "visible" : "hidden"}
               variants={staggerContainer}
             >
-              {tokenPackages.map((pkg, index) => (
-                <motion.div
-                  key={index}
-                  className={`py-12 px-8 flex flex-col h-full relative ${
-                    index > 0 ? "md:border-l border-border" : ""
-                  } ${
-                    index < tokenPackages.length - 1
-                      ? "border-b md:border-b-0 border-border"
-                      : ""
-                  } ${pkg.popular ? "bg-accent-primary/5" : ""}`}
-                  variants={scaleIn}
-                  transition={{ duration: 0.5, delay: index * 0.15 }}
-                  whileHover={{
-                    backgroundColor: pkg.popular
-                      ? "rgba(var(--accent-primary-rgb), 0.08)"
-                      : "rgba(0,0,0,0.02)",
-                  }}
-                >
-                  {pkg.popular && (
-                    <>
-                      <motion.div
-                        className="absolute inset-0 border-2 border-accent-primary rounded-lg pointer-events-none"
-                        animate={{
-                          boxShadow: [
-                            "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
-                            "0 0 0 8px rgba(var(--accent-primary-rgb), 0.1)",
-                            "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
-                          ],
-                        }}
-                        transition={{
-                          duration: 2,
-                          repeat: Number.POSITIVE_INFINITY,
-                          ease: "easeInOut",
-                        }}
-                      />
-                      <motion.div
-                        className="inline-block mb-4 px-3 py-1 bg-accent-primary text-white text-xs font-medium rounded-full w-fit relative z-10"
-                        initial={{ scale: 0 }}
-                        animate={pricingInView ? { scale: 1 } : { scale: 0 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 500,
-                          delay: 0.5,
-                        }}
-                      >
-                        Best Value
-                      </motion.div>
-                    </>
-                  )}
-                  {!pkg.popular && <div className="mb-4 h-6" />}
-                  <div className="mb-6">
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
-                      {pkg.name}
-                    </h3>
-                    <p className="text-sm text-muted-foreground">
-                      {pkg.tokens.toLocaleString()} tokens
-                    </p>
+              {packagesLoading ? (
+                // Loading skeleton
+                [...Array(3)].map((_, index) => (
+                  <div
+                    key={index}
+                    className={`py-12 px-8 flex flex-col h-full ${
+                      index > 0 ? "md:border-l border-border" : ""
+                    } ${
+                      index < 2 ? "border-b md:border-b-0 border-border" : ""
+                    }`}
+                  >
+                    <div className="mb-4 h-6" />
+                    <div className="mb-6">
+                      <div className="h-6 w-24 bg-muted animate-pulse rounded mb-2" />
+                      <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+                    </div>
+                    <div className="mb-6">
+                      <div className="h-10 w-28 bg-muted animate-pulse rounded" />
+                    </div>
+                    <div className="space-y-3 mb-8 flex-grow">
+                      {[...Array(5)].map((_, i) => (
+                        <div key={i} className="h-4 bg-muted animate-pulse rounded" />
+                      ))}
+                    </div>
+                    <div className="h-12 bg-muted animate-pulse rounded-lg" />
                   </div>
-                  <div className="mb-6 flex items-baseline gap-2">
-                    {/* Original Price (Strikethrough) */}
-                    <motion.span
-                      className="text-xl font-medium text-muted-foreground line-through opacity-80"
-                      initial={{ opacity: 0, scale: 0.9 }}
-                      animate={
-                        pricingInView
-                          ? { opacity: 0.8, scale: 1 }
-                          : { opacity: 0, scale: 0.9 }
-                      }
-                      transition={{ delay: 0.3 + index * 0.1 }}
-                    >
-                      ${pkg.originalPrice}
-                    </motion.span>
-
-                    {/* Current Price */}
-                    <span>
-                      <motion.span
-                        className="text-4xl font-bold text-foreground"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={
-                          pricingInView
-                            ? { opacity: 1, y: 0 }
-                            : { opacity: 0, y: 20 }
-                        }
-                        transition={{ delay: 0.3 + index * 0.1 }}
-                      >
-                        ${pkg.price}
-                      </motion.span>
-                      <span className="text-sm text-muted-foreground">
-                        {" "}
-                        /month
-                      </span>
-                    </span>
-                  </div>
-                  <ul className="space-y-3 mb-8 flex-grow">
-                    {pkg.features.map((feature, fIndex) => (
-                      <motion.li
-                        key={fIndex}
-                        className="flex items-center gap-2 text-sm text-muted-foreground"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={
-                          pricingInView
-                            ? { opacity: 1, x: 0 }
-                            : { opacity: 0, x: -10 }
-                        }
-                        transition={{ delay: 0.4 + fIndex * 0.05 }}
-                      >
-                        <svg
-                          className="w-4 h-4 text-accent-primary flex-shrink-0"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
+                ))
+              ) : (
+                tokenPackages.map((pkg, index) => (
+                  <motion.div
+                    key={pkg.id}
+                    className={`py-12 px-8 flex flex-col h-full relative ${
+                      index > 0 ? "md:border-l border-border" : ""
+                    } ${
+                      index < tokenPackages.length - 1
+                        ? "border-b md:border-b-0 border-border"
+                        : ""
+                    } ${pkg.popular ? "bg-accent-primary/5" : ""}`}
+                    variants={scaleIn}
+                    transition={{ duration: 0.5, delay: index * 0.15 }}
+                    whileHover={{
+                      backgroundColor: pkg.popular
+                        ? "rgba(var(--accent-primary-rgb), 0.08)"
+                        : "rgba(0,0,0,0.02)",
+                    }}
+                  >
+                    {pkg.popular && (
+                      <>
+                        <motion.div
+                          className="absolute inset-0 border-2 border-accent-primary rounded-lg pointer-events-none"
+                          animate={{
+                            boxShadow: [
+                              "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
+                              "0 0 0 8px rgba(var(--accent-primary-rgb), 0.1)",
+                              "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
+                            ],
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Number.POSITIVE_INFINITY,
+                            ease: "easeInOut",
+                          }}
+                        />
+                        <motion.div
+                          className="inline-block mb-4 px-3 py-1 bg-accent-primary text-white text-xs font-medium rounded-full w-fit relative z-10"
+                          initial={{ scale: 0 }}
+                          animate={pricingInView ? { scale: 1 } : { scale: 0 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 500,
+                            delay: 0.5,
+                          }}
                         >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M5 13l4 4L19 7"
-                          />
-                        </svg>
-                        {feature}
-                      </motion.li>
-                    ))}
-                  </ul>
-                  <Link href="https://accounts.studio.brmax.xyz/sign-up">
-                    <motion.button
-                      className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${
-                        pkg.popular
-                          ? "bg-accent-primary text-white hover:bg-accent-primary/90"
-                          : "bg-foreground text-background hover:opacity-90"
-                      }`}
-                      whileHover={{
-                        scale: 1.02,
-                        boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
-                      }}
-                      whileTap={{ scale: 0.98 }}
-                    >
-                      Get started
-                    </motion.button>
-                  </Link>
-                </motion.div>
-              ))}
+                          Best Value
+                        </motion.div>
+                      </>
+                    )}
+                    {!pkg.popular && <div className="mb-4 h-6" />}
+                    <div className="mb-6">
+                      <h3 className="text-xl font-semibold text-foreground mb-2">
+                        {pkg.name}
+                      </h3>
+                      <p className="text-sm text-muted-foreground">
+                        {pkg.tokens.toLocaleString()} tokens
+                      </p>
+                    </div>
+                    <div className="mb-6 flex items-baseline gap-2">
+                      {/* Current Price */}
+                      <span>
+                        <motion.span
+                          className="text-4xl font-bold text-foreground"
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={
+                            pricingInView
+                              ? { opacity: 1, y: 0 }
+                              : { opacity: 0, y: 20 }
+                          }
+                          transition={{ delay: 0.3 + index * 0.1 }}
+                        >
+                          ${pkg.priceUSD}
+                        </motion.span>
+                        <span className="text-sm text-muted-foreground">
+                          {" "}
+                          /month
+                        </span>
+                      </span>
+                    </div>
+                    <ul className="space-y-3 mb-8 flex-grow">
+                      {pkg.features.map((feature, fIndex) => (
+                        <motion.li
+                          key={fIndex}
+                          className="flex items-center gap-2 text-sm text-muted-foreground"
+                          initial={{ opacity: 0, x: -10 }}
+                          animate={
+                            pricingInView
+                              ? { opacity: 1, x: 0 }
+                              : { opacity: 0, x: -10 }
+                          }
+                          transition={{ delay: 0.4 + fIndex * 0.05 }}
+                        >
+                          <svg
+                            className="w-4 h-4 text-accent-primary flex-shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 13l4 4L19 7"
+                            />
+                          </svg>
+                          {feature}
+                        </motion.li>
+                      ))}
+                    </ul>
+                    <Link href="https://accounts.studio.brmax.xyz/sign-up">
+                      <motion.button
+                        className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${
+                          pkg.popular
+                            ? "bg-accent-primary text-white hover:bg-accent-primary/90"
+                            : "bg-foreground text-background hover:opacity-90"
+                        }`}
+                        whileHover={{
+                          scale: 1.02,
+                          boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
+                        }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Get started
+                      </motion.button>
+                    </Link>
+                  </motion.div>
+                ))
+              )}
             </motion.div>
 
             {/* Token-based pricing explanation */}
