@@ -282,7 +282,8 @@ export default function Home() {
         const response = await fetch('https://studio.brmax.xyz/api/token-packages');
         if (response.ok) {
           const data: TokenPackage[] = await response.json();
-          setTokenPackages(data);
+          // @ts-expect-error It does exist
+          setTokenPackages(data.packages);
         }
       } catch (error) {
         console.error('Failed to fetch token packages:', error);
