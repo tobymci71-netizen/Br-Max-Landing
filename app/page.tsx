@@ -825,7 +825,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
                 <motion.a
-                  href="https://discord.gg/brmax"
+                  href="https://discord.gg/Ef3EuKSjaR"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-[#5865F2]/10 to-[#5865F2]/5 border border-[#5865F2]/20 hover:border-[#5865F2]/40 transition-all duration-300"
