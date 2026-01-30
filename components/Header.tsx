@@ -107,7 +107,7 @@ export default function Header() {
               )}
             </button>
             <Link
-              href="https://accounts.studio.brmax.xyz/sign-up"
+              href={`https://accounts.${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}/sign-up`}
               className="px-4 py-2 bg-accent-primary text-white rounded-lg text-sm font-medium hover:bg-accent-primary/90 transition-opacity"
             >
               Start building

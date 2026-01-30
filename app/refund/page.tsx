@@ -176,7 +176,7 @@ export default function RefundPolicy() {
                     help@brmax.xyz
                   </a>
                   <a
-                    href="https://studio.brmax.xyz"
+                    href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 text-accent-primary hover:underline font-medium"

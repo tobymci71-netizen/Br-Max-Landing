@@ -279,7 +279,7 @@ export default function Home() {
   useEffect(() => {
     const fetchTokenPackages = async () => {
       try {
-        const response = await fetch('https://studio.brmax.xyz/api/token-packages');
+        const response = await fetch(`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}/api/token-packages`);
         if (response.ok) {
           const data: TokenPackage[] = await response.json();
           // @ts-expect-error It does exist
@@ -794,7 +794,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <motion.a
-                  href="https://accounts.studio.brmax.xyz/sign-up"
+                  href={`https://accounts.${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}/sign-up`}
                   className="px-8 py-3 bg-accent-primary text-white rounded-lg hover:bg-accent-primary/90 transition-all text-base font-medium"
                   whileHover={{
                     scale: 1.05,
@@ -1713,7 +1713,7 @@ export default function Home() {
                         </motion.li>
                       ))}
                     </ul>
-                    <Link href="https://accounts.studio.brmax.xyz/sign-up">
+                    <Link href={`https://accounts.${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}/sign-up`}>
                       <motion.button
                         className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${
                           pkg.popular
