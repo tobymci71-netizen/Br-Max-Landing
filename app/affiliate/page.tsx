@@ -865,7 +865,7 @@ export default function AffiliatePage() {
               </div>
 
               <motion.a
-                href="https://discord.gg/brmax"
+                href="https://discord.gg/Ef3EuKSjaR"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-[#5865F2] text-white rounded-lg hover:bg-[#4752C4] transition-all text-base font-medium"
