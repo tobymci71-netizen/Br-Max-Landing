@@ -644,47 +644,6 @@ export default function Home() {
       <BackgroundDecoration />
       <Header />
 
-      {/* Affiliate Banner */}
-      <Link href="/affiliate">
-        <motion.div
-          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary bg-[length:200%_100%] text-white py-3 cursor-pointer"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          whileHover={{ scale: 1.01 }}
-        >
-          <div className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-3">
-            <span className="text-lg">💰</span>
-            <span className="font-semibold text-sm md:text-base">
-              GET PAID BY US
-            </span>
-            <span className="hidden sm:inline text-sm opacity-90">
-              Join our Affiliate Program & earn 30% commission + $500 in prizes!
-            </span>
-            <svg
-              className="w-4 h-4 ml-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </div>
-        </motion.div>
-      </Link>
-
-      <style jsx global>{`
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-      `}</style>
-
       <main>
         {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center pt-32 border-l border-r border-border max-w-6xl mx-auto relative overflow-hidden">

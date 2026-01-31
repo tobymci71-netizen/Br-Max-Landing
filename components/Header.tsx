@@ -4,6 +4,7 @@ import type React from "react"
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
+import { motion } from "framer-motion"
 
 export default function Header() {
   const [isDark, setIsDark] = useState(false)
@@ -34,7 +35,41 @@ export default function Header() {
   }
 
   return (
-    <header className="fixed top-12 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b border-border overflow-hidden">
+    <>
+      {/* Affiliate Banner */}
+      <Link href="/affiliate">
+        <motion.div
+          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary bg-[length:200%_100%] text-white py-3 cursor-pointer"
+          initial={{ y: -50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          whileHover={{ scale: 1.01 }}
+        >
+          <div className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-3">
+            <span className="text-lg">💰</span>
+            <span className="font-semibold text-sm md:text-base">
+              GET PAID BY US
+            </span>
+            <span className="hidden sm:inline text-sm opacity-90">
+              Join our Affiliate Program & earn 30% commission + $500 in prizes!
+            </span>
+            <svg
+              className="w-4 h-4 ml-1"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 5l7 7-7 7"
+              />
+            </svg>
+          </div>
+        </motion.div>
+      </Link>
+
+      <header className="fixed top-12 left-0 right-0 z-40 bg-background/95 backdrop-blur-md border-b border-border overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 w-full">
         <div className="flex items-center justify-between h-16 gap-2">
           {/* Logo */}
@@ -184,5 +219,6 @@ export default function Header() {
         )}
       </div>
     </header>
+    </>
   )
 }
