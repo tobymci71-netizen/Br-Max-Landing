@@ -65,8 +65,8 @@ function SectionDivider({
               pos === "right"
                 ? "translateX(-100%) translateY(-50%)"
                 : pos === "left"
-                ? "translateY(-50%)"
-                : "translateX(-50%) translateY(-50%)",
+                  ? "translateY(-50%)"
+                  : "translateX(-50%) translateY(-50%)",
           }}
         />
       ))}
@@ -89,8 +89,8 @@ function InnerDivider({ dotPositions = [] }: { dotPositions?: string[] }) {
               pos === "right"
                 ? "translateX(-100%) translateY(-50%)"
                 : pos === "left"
-                ? "translateY(-50%)"
-                : "translateX(-50%) translateY(-50%)",
+                  ? "translateY(-50%)"
+                  : "translateX(-50%) translateY(-50%)",
           }}
         />
       ))}
@@ -153,52 +153,52 @@ export default function Home() {
   // Define examples before hooks (to avoid "Cannot access variable before declaration" error)
   const examples = [
     {
-      title: "He messed up with their bond and she found out… 💔",
+      title: "@RIZZ APP they betrayed him... link in bio #textstories…",
       thumbnail: "/viral-story-texting-video-thumbnail.jpg",
       tiktokUrl:
-        "https://www.tiktok.com/@textifyblue/video/7582613263955873079",
-      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo1.mp4",
+        "https://www.tiktok.com/@texty.stories.daily/video/7597578004876856598",
+      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo1_v2.mp4",
       fallbackStats: {
-        views: 58000,
-        likes: 2600,
-        comments: 77,
-        title: "He messed up with their bond and she found out… 💔",
+        views: 465000,
+        likes: 17000,
+        comments: 48,
+        title: "@RIZZ APP they betrayed him... link in bio #textstories…",
       },
     },
     {
-      title: "She wanted help but he didn’t listen to her until… 😭",
+      title: "@RIZZ APP she got it right back... link in bio #textstories",
       thumbnail: "/reddit-drama-texting-video-thumbnail.jpg",
-      tiktokUrl: "https://www.tiktok.com/@textgone/video/7577780620978408759",
-      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo2.mp4",
+      tiktokUrl: "https://www.tiktok.com/@texty.stories.daily/video/7599790603211214102",
+      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo2_v2.mp4",
       fallbackStats: {
-        views: 196000,
-        likes: 11400,
-        comments: 241,
-        title: "She wanted help but he didn't listen to her until… 😭",
+        views: 291450,
+        likes: 10450,
+        comments: 54,
+        title: "@RIZZ APP she got it right back... link in bio #textstories",
       },
     },
     {
-      title: "She took him for granted and brushed off his efforts 😭",
+      title: "part 2 anyone?... link in bio #textstories",
       thumbnail: "/aita-thread-texting-video-thumbnail.jpg",
-      tiktokUrl: "https://www.tiktok.com/@textgone/video/7573808899246148878",
-      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo3.mp4",
+      tiktokUrl: "https://www.tiktok.com/@speakingtexts/video/7600204876609686786",
+      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo3_v2.mp4",
       fallbackStats: {
-        views: 481700,
-        likes: 20500,
-        comments: 1120,
-        title: "She took him for granted and brushed off his efforts 😭",
+        views: 183785,
+        likes: 9950,
+        comments: 59,
+        title: "part 2 anyone?... link in bio #textstories",
       },
     },
     {
-      title: "She felt unwanted and envied her sister until… 😭",
+      title: "@RIZZ APP pick a side... link in bio #textstories",
       thumbnail: "/text-confession-video-thumbnail.jpg",
-      tiktokUrl: "https://www.tiktok.com/@textgone/video/7575203195291454775",
-      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo4.mp4",
+      tiktokUrl: "https://www.tiktok.com/@speakingtexts/video/7598697536353832214",
+      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo4_v2.mp4",
       fallbackStats: {
-        views: 378800,
-        likes: 24900,
-        comments: 455,
-        title: "She felt unwanted and envied her sister until… 😭",
+        views: 150545,
+        likes: 7600,
+        comments: 185,
+        title: "@RIZZ APP pick a side... link in bio #textstories",
       },
     },
   ];
@@ -640,7 +640,7 @@ export default function Home() {
       {/* Affiliate Banner */}
       <Link href="/affiliate">
         <motion.div
-          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary bg-[length:200%_100%] text-white py-3 cursor-pointer"
+          className="fixed md:hidden block top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary bg-[length:200%_100%] text-white py-3 cursor-pointer"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           whileHover={{ scale: 1.01 }}
@@ -783,9 +783,7 @@ export default function Home() {
                 variants={fadeInUp}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                The fastest way to create authentic iMessage-style videos for
-                TikTok, Instagram, and YouTube. Subscribe once and your
-                creative work never stops.
+                The fastest way to create authentic texting videos that help you grow and <span className="text-green-500">get paid</span> on TikTok, Instagram, and YouTube. Subscribe once and keep earning from your creativity.
               </motion.p>
 
               <motion.div
@@ -911,8 +909,8 @@ export default function Home() {
                   animate={
                     heroInView
                       ? {
-                          y: [0, 8, 0],
-                        }
+                        y: [0, 8, 0],
+                      }
                       : { y: 0 }
                   }
                   transition={{
@@ -996,13 +994,10 @@ export default function Home() {
                   <motion.div
                     key={index}
                     ref={cardRef}
-                    className={`group relative overflow-hidden border-border ${
-                      index > 0 ? "lg:border-l" : ""
-                    } ${index === 1 ? "md:border-l" : ""} ${
-                      index === 2 ? "md:border-l lg:border-l" : ""
-                    } ${index === 3 ? "md:border-l" : ""} ${
-                      index > 0 ? "border-t md:border-t lg:border-t-0" : ""
-                    } ${index === 2 ? "lg:border-t-0" : ""}`}
+                    className={`group relative overflow-hidden border-border ${index > 0 ? "lg:border-l" : ""
+                      } ${index === 1 ? "md:border-l" : ""} ${index === 2 ? "md:border-l lg:border-l" : ""
+                      } ${index === 3 ? "md:border-l" : ""} ${index > 0 ? "border-t md:border-t lg:border-t-0" : ""
+                      } ${index === 2 ? "lg:border-t-0" : ""}`}
                     variants={scaleIn}
                     transition={{ duration: 0.5 }}
                     whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
@@ -1220,13 +1215,10 @@ export default function Home() {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className={`py-12 px-6 border-border ${
-                    index > 0 ? "lg:border-l" : ""
-                  } ${index === 1 ? "md:border-l" : ""} ${
-                    index === 2 ? "md:border-l lg:border-l" : ""
-                  } ${index === 3 ? "md:border-l" : ""} ${
-                    index > 0 ? "border-t md:border-t lg:border-t-0" : ""
-                  } ${index === 2 ? "lg:border-t-0" : ""}`}
+                  className={`py-12 px-6 border-border ${index > 0 ? "lg:border-l" : ""
+                    } ${index === 1 ? "md:border-l" : ""} ${index === 2 ? "md:border-l lg:border-l" : ""
+                    } ${index === 3 ? "md:border-l" : ""} ${index > 0 ? "border-t md:border-t lg:border-t-0" : ""
+                    } ${index === 2 ? "lg:border-t-0" : ""}`}
                   variants={index % 2 === 0 ? slideInLeft : slideInRight}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
@@ -1407,7 +1399,7 @@ export default function Home() {
                   {bentoItems[3].description}
                 </p>
                 <p className="text-accent-secondary text-xs mt-2 relative z-10">
-                  *Speed depends on video length
+                  *Speed depends on video length & internet
                 </p>
               </motion.div>
 
@@ -1641,11 +1633,9 @@ export default function Home() {
                 [...Array(3)].map((_, index) => (
                   <div
                     key={index}
-                    className={`py-12 px-8 flex flex-col h-full ${
-                      index > 0 ? "md:border-l border-border" : ""
-                    } ${
-                      index < 2 ? "border-b md:border-b-0 border-border" : ""
-                    }`}
+                    className={`py-12 px-8 flex flex-col h-full ${index > 0 ? "md:border-l border-border" : ""
+                      } ${index < 2 ? "border-b md:border-b-0 border-border" : ""
+                      }`}
                   >
                     <div className="mb-4 h-6" />
                     <div className="mb-6">
@@ -1667,13 +1657,11 @@ export default function Home() {
                 tokenPackages.map((pkg, index) => (
                   <motion.div
                     key={pkg.id}
-                    className={`py-12 px-8 flex flex-col h-full relative ${
-                      index > 0 ? "md:border-l border-border" : ""
-                    } ${
-                      index < tokenPackages.length - 1
+                    className={`py-12 px-8 flex flex-col h-full relative ${index > 0 ? "md:border-l border-border" : ""
+                      } ${index < tokenPackages.length - 1
                         ? "border-b md:border-b-0 border-border"
                         : ""
-                    } ${pkg.popular ? "bg-accent-primary/5" : ""}`}
+                      } ${pkg.popular ? "bg-accent-primary/5" : ""}`}
                     variants={scaleIn}
                     transition={{ duration: 0.5, delay: index * 0.15 }}
                     whileHover={{
@@ -1789,11 +1777,10 @@ export default function Home() {
                     </ul>
                     <Link href={`https://accounts.${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}/sign-up`}>
                       <motion.button
-                        className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${
-                          pkg.popular
+                        className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${pkg.popular
                             ? "bg-accent-primary text-white hover:bg-accent-primary/90"
                             : "bg-foreground text-background hover:opacity-90"
-                        }`}
+                          }`}
                         whileHover={{
                           scale: 1.02,
                           boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
@@ -1873,9 +1860,8 @@ export default function Home() {
                     .map((faq, index) => (
                       <motion.div
                         key={index}
-                        className={`border-border ${
-                          index > 0 ? "border-t" : ""
-                        }`}
+                        className={`border-border ${index > 0 ? "border-t" : ""
+                          }`}
                         variants={fadeInUp}
                       >
                         <motion.button
@@ -1931,9 +1917,8 @@ export default function Home() {
                     return (
                       <motion.div
                         key={actualIndex}
-                        className={`border-border ${
-                          index > 0 ? "border-t" : ""
-                        }`}
+                        className={`border-border ${index > 0 ? "border-t" : ""
+                          }`}
                         variants={fadeInUp}
                       >
                         <motion.button
