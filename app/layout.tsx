@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
 import ServiceWorkerRegistration from "@/components/ServiceWorkerRegistration";
-import DiscordBanner from "@/components/DiscordBanner";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next"
 
@@ -83,7 +82,6 @@ export default function RootLayout({
       >
         <Analytics/>
         <ServiceWorkerRegistration />
-        <DiscordBanner />
         <ThemeProvider>
           {children}
         </ThemeProvider>

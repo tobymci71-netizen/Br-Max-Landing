@@ -9,6 +9,14 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 import CountUp from "react-countup";
 import Link from "next/link";
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import Image from "next/image";
+
+
 interface TikTokStats {
   likes: number;
   comments: number;
@@ -65,8 +73,8 @@ function SectionDivider({
               pos === "right"
                 ? "translateX(-100%) translateY(-50%)"
                 : pos === "left"
-                ? "translateY(-50%)"
-                : "translateX(-50%) translateY(-50%)",
+                  ? "translateY(-50%)"
+                  : "translateX(-50%) translateY(-50%)",
           }}
         />
       ))}
@@ -89,8 +97,8 @@ function InnerDivider({ dotPositions = [] }: { dotPositions?: string[] }) {
               pos === "right"
                 ? "translateX(-100%) translateY(-50%)"
                 : pos === "left"
-                ? "translateY(-50%)"
-                : "translateX(-50%) translateY(-50%)",
+                  ? "translateY(-50%)"
+                  : "translateX(-50%) translateY(-50%)",
           }}
         />
       ))}
@@ -153,55 +161,91 @@ export default function Home() {
   // Define examples before hooks (to avoid "Cannot access variable before declaration" error)
   const examples = [
     {
-      title: "He messed up with their bond and she found out… 💔",
+      title: "@RIZZ APP they betrayed him... link in bio #textstories…",
       thumbnail: "/viral-story-texting-video-thumbnail.jpg",
       tiktokUrl:
-        "https://www.tiktok.com/@textifyblue/video/7582613263955873079",
-      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo1.mp4",
+        "https://www.tiktok.com/@texty.stories.daily/video/7597578004876856598",
+      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo1_v2.mp4",
       fallbackStats: {
-        views: 58000,
-        likes: 2600,
-        comments: 77,
-        title: "He messed up with their bond and she found out… 💔",
+        views: 465000,
+        likes: 17000,
+        comments: 48,
+        title: "@RIZZ APP they betrayed him... link in bio #textstories…",
       },
     },
     {
-      title: "She wanted help but he didn’t listen to her until… 😭",
+      title: "@RIZZ APP she got it right back... link in bio #textstories",
       thumbnail: "/reddit-drama-texting-video-thumbnail.jpg",
-      tiktokUrl: "https://www.tiktok.com/@textgone/video/7577780620978408759",
-      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo2.mp4",
+      tiktokUrl: "https://www.tiktok.com/@texty.stories.daily/video/7599790603211214102",
+      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo2_v2.mp4",
       fallbackStats: {
-        views: 196000,
-        likes: 11400,
-        comments: 241,
-        title: "She wanted help but he didn't listen to her until… 😭",
+        views: 291450,
+        likes: 10450,
+        comments: 54,
+        title: "@RIZZ APP she got it right back... link in bio #textstories",
       },
     },
     {
-      title: "She took him for granted and brushed off his efforts 😭",
+      title: "part 2 anyone?... link in bio #textstories",
       thumbnail: "/aita-thread-texting-video-thumbnail.jpg",
-      tiktokUrl: "https://www.tiktok.com/@textgone/video/7573808899246148878",
-      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo3.mp4",
+      tiktokUrl: "https://www.tiktok.com/@speakingtexts/video/7600204876609686786",
+      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo3_v2.mp4",
       fallbackStats: {
-        views: 481700,
-        likes: 20500,
-        comments: 1120,
-        title: "She took him for granted and brushed off his efforts 😭",
+        views: 183785,
+        likes: 9950,
+        comments: 59,
+        title: "part 2 anyone?... link in bio #textstories",
       },
     },
     {
-      title: "She felt unwanted and envied her sister until… 😭",
+      title: "@RIZZ APP pick a side... link in bio #textstories",
       thumbnail: "/text-confession-video-thumbnail.jpg",
-      tiktokUrl: "https://www.tiktok.com/@textgone/video/7575203195291454775",
-      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo4.mp4",
+      tiktokUrl: "https://www.tiktok.com/@speakingtexts/video/7598697536353832214",
+      videoUrl: "https://br-max.s3.ap-south-1.amazonaws.com/ExampleVideo4_v2.mp4",
       fallbackStats: {
-        views: 378800,
-        likes: 24900,
-        comments: 455,
-        title: "She felt unwanted and envied her sister until… 😭",
+        views: 150545,
+        likes: 7600,
+        comments: 185,
+        title: "@RIZZ APP pick a side... link in bio #textstories",
       },
     },
   ];
+
+  // Add this new section data after your existing examples array
+  const creatorProof = [
+    {
+      handle: "@texty.stories.daily",
+      followers: "202.6K",
+      totalLikes: "16.5M",
+      profileImage: "/TiktokProfile_1.png",
+      earningsImage: "/TiktokEarnings_1.webp",
+      analyticsImage: "/TiktokAnalytics_1.webp",
+      earnings: "$13,068.17",
+      period: "30 days",
+      postViews: "87M",
+      likes: "16.5M",
+      rpm: "$0.94",
+    },
+    {
+      handle: "@speakingtexts",
+      followers: "550.6K",
+      totalLikes: "29M",
+      profileImage: "/TiktokProfile_2.png",
+      earningsImage: "/TiktokEarnings_2.webp",
+      analyticsImage: "/TiktokAnalytics_2.webp",
+      earnings: "$11,992.88",
+      period: "All time",
+      postViews: "87M",
+      likes: "29M",
+      rpm: "$0.94",
+    },
+  ];
+
+  // Add intersection observer for the new section (add this with your other useInView hooks)
+  const [creatorProofRef, creatorProofInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   // Fetch TikTok stats for all examples with caching
   useEffect(() => {
@@ -279,7 +323,7 @@ export default function Home() {
   useEffect(() => {
     const fetchTokenPackages = async () => {
       try {
-        const response = await fetch('https://studio.brmax.xyz/api/token-packages');
+        const response = await fetch(`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}/api/token-packages`);
         if (response.ok) {
           const data: TokenPackage[] = await response.json();
           // @ts-expect-error It does exist
@@ -637,47 +681,6 @@ export default function Home() {
       <BackgroundDecoration />
       <Header />
 
-      {/* Affiliate Banner */}
-      <Link href="/affiliate">
-        <motion.div
-          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary bg-[length:200%_100%] text-white py-3 cursor-pointer"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          whileHover={{ scale: 1.01 }}
-        >
-          <div className="max-w-6xl mx-auto px-4 flex items-center justify-center gap-3">
-            <span className="text-lg">💰</span>
-            <span className="font-semibold text-sm md:text-base">
-              GET PAID BY US
-            </span>
-            <span className="hidden sm:inline text-sm opacity-90">
-              Join our Affiliate Program & earn 30% commission + $500 in prizes!
-            </span>
-            <svg
-              className="w-4 h-4 ml-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </div>
-        </motion.div>
-      </Link>
-
-      <style jsx global>{`
-        @keyframes gradient-shift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-      `}</style>
-
       <main>
         {/* Hero Section */}
         <section className="min-h-screen flex items-center justify-center pt-32 border-l border-r border-border max-w-6xl mx-auto relative overflow-hidden">
@@ -783,9 +786,7 @@ export default function Home() {
                 variants={fadeInUp}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                The fastest way to create authentic iMessage-style videos for
-                TikTok, Instagram, and YouTube. Subscribe once and your
-                creative work never stops.
+                The fastest way to create authentic texting videos that help you grow and <span className="text-green-500">get paid</span> on TikTok, Instagram, and YouTube. Subscribe once and keep earning from your creativity.
               </motion.p>
 
               <motion.div
@@ -794,7 +795,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <motion.a
-                  href="https://accounts.studio.brmax.xyz/sign-up"
+                  href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}
                   className="px-8 py-3 bg-accent-primary text-white rounded-lg hover:bg-accent-primary/90 transition-all text-base font-medium"
                   whileHover={{
                     scale: 1.05,
@@ -911,8 +912,8 @@ export default function Home() {
                   animate={
                     heroInView
                       ? {
-                          y: [0, 8, 0],
-                        }
+                        y: [0, 8, 0],
+                      }
                       : { y: 0 }
                   }
                   transition={{
@@ -944,6 +945,7 @@ export default function Home() {
         <div className="max-w-6xl mx-auto">
           <SectionDivider />
         </div>
+
 
         <section
           id="examples"
@@ -982,201 +984,405 @@ export default function Home() {
               dotPositions={["left", "25%", "50%", "75%", "right"]}
             />
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-              initial="hidden"
-              animate={examplesInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-            >
-              {examples.map((example, index) => {
-                const cardRef = cardRefs[index];
-                const cardInView = cardInViews[index];
+            {/* Carousel Section */}
+            <div className="py-8 px-4">
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={20}
+                slidesPerView={1.3}
+                centeredSlides={false}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 0,
+                  },
+                }}
+                className="examples-swiper"
+              >
+                {examples.map((example, index) => {
+                  const cardRef = cardRefs[index];
+                  const cardInView = cardInViews[index];
 
-                return (
-                  <motion.div
-                    key={index}
-                    ref={cardRef}
-                    className={`group relative overflow-hidden border-border ${
-                      index > 0 ? "lg:border-l" : ""
-                    } ${index === 1 ? "md:border-l" : ""} ${
-                      index === 2 ? "md:border-l lg:border-l" : ""
-                    } ${index === 3 ? "md:border-l" : ""} ${
-                      index > 0 ? "border-t md:border-t lg:border-t-0" : ""
-                    } ${index === 2 ? "lg:border-t-0" : ""}`}
-                    variants={scaleIn}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
-                  >
-                    <div className="aspect-[9/16] relative overflow-hidden">
-                      {example.videoUrl ? (
-                        <video
-                          src={example.videoUrl}
-                          className="w-full h-full object-cover"
-                          autoPlay
-                          muted
-                          loop
-                          controls
-                          controlsList="nofullscreen"
-                          disablePictureInPicture
-                          playsInline
-                        />
-                      ) : (
-                        <motion.img
-                          src={example.thumbnail || "/placeholder.svg"}
-                          alt={example.title}
-                          className="w-full h-full object-cover"
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.4 }}
-                        />
-                      )}
-                    </div>
-                    <div className="p-6 border-t border-border">
-                      <h3 className="font-semibold text-foreground mb-3 text-sm leading-relaxed">
-                        {example.tiktokUrl && tiktokStats[example.tiktokUrl]
-                          ? tiktokStats[example.tiktokUrl].title
-                          : example.fallbackStats?.title || example.title}
-                      </h3>
-
-                      {/* Stats display */}
-                      {example.tiktokUrl && (
-                        <div className="flex items-center gap-4 mb-3 text-xs text-muted-foreground">
-                          <div className="flex items-center w-[33%] gap-1">
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                              />
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                              />
-                            </svg>
-                            {statsLoading ? (
-                              <div className="h-4 w-12 bg-muted animate-pulse rounded" />
-                            ) : (
-                              <span className="font-medium">
-                                {cardInView && (
-                                  <CountUp
-                                    start={0}
-                                    end={
-                                      tiktokStats[example.tiktokUrl]?.views ||
-                                      example.fallbackStats?.views ||
-                                      0
-                                    }
-                                    duration={15}
-                                    separator=","
-                                    formattingFn={formatNumber}
-                                  />
-                                )}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center w-[33%] gap-1">
-                            <svg
-                              className="w-4 h-4"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                            </svg>
-                            {statsLoading ? (
-                              <div className="h-4 w-12 bg-muted animate-pulse rounded" />
-                            ) : (
-                              <span className="font-medium">
-                                {cardInView && (
-                                  <CountUp
-                                    start={0}
-                                    end={
-                                      tiktokStats[example.tiktokUrl]?.likes ||
-                                      example.fallbackStats?.likes ||
-                                      0
-                                    }
-                                    duration={15}
-                                    separator=","
-                                    formattingFn={formatNumber}
-                                  />
-                                )}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center w-[33%] gap-1">
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                              />
-                            </svg>
-                            {statsLoading ? (
-                              <div className="h-4 w-12 bg-muted animate-pulse rounded" />
-                            ) : (
-                              <span className="font-medium">
-                                {cardInView && (
-                                  <CountUp
-                                    start={0}
-                                    end={
-                                      tiktokStats[example.tiktokUrl]
-                                        ?.comments ||
-                                      example.fallbackStats?.comments ||
-                                      0
-                                    }
-                                    duration={15}
-                                    separator=","
-                                    formattingFn={formatNumber}
-                                  />
-                                )}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      )}
-
-                      {example.tiktokUrl && (
-                        <motion.a
-                          href={example.tiktokUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-accent-primary hover:underline flex items-center gap-1"
-                          whileHover={{ x: 4 }}
-                        >
-                          View on TikTok
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  return (
+                    <SwiperSlide key={index}>
+                      <motion.div
+                        ref={cardRef}
+                        className="group relative overflow-hidden border border-border"
+                        variants={scaleIn}
+                        transition={{ duration: 0.5 }}
+                        whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
+                      >
+                        <div className="aspect-[9/16] relative overflow-hidden">
+                          {example.videoUrl ? (
+                            <video
+                              src={example.videoUrl}
+                              className="w-full h-full object-cover"
+                              autoPlay
+                              muted
+                              loop
+                              controls
+                              controlsList="nofullscreen"
+                              disablePictureInPicture
+                              playsInline
                             />
-                          </svg>
-                        </motion.a>
-                      )}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                          ) : (
+                            <motion.img
+                              src={example.thumbnail || "/placeholder.svg"}
+                              alt={example.title}
+                              className="w-full h-full object-cover"
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.4 }}
+                            />
+                          )}
+                        </div>
+                        <div className="p-6 border-t border-border">
+                          <h3 className="font-semibold text-foreground mb-3 text-sm leading-relaxed">
+                            {example.tiktokUrl && tiktokStats[example.tiktokUrl]
+                              ? tiktokStats[example.tiktokUrl].title
+                              : example.fallbackStats?.title || example.title}
+                          </h3>
+
+                          {/* Stats display */}
+                          {example.tiktokUrl && (
+                            <div className="flex items-center gap-4 mb-3 text-xs text-muted-foreground">
+                              <div className="flex items-center w-[33%] gap-1">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                  />
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                  />
+                                </svg>
+                                {statsLoading ? (
+                                  <div className="h-4 w-12 bg-muted animate-pulse rounded" />
+                                ) : (
+                                  <span className="font-medium">
+                                    {cardInView && (
+                                      <CountUp
+                                        start={0}
+                                        end={
+                                          tiktokStats[example.tiktokUrl]?.views ||
+                                          example.fallbackStats?.views ||
+                                          0
+                                        }
+                                        duration={15}
+                                        separator=","
+                                        formattingFn={formatNumber}
+                                      />
+                                    )}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="flex items-center w-[33%] gap-1">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                </svg>
+                                {statsLoading ? (
+                                  <div className="h-4 w-12 bg-muted animate-pulse rounded" />
+                                ) : (
+                                  <span className="font-medium">
+                                    {cardInView && (
+                                      <CountUp
+                                        start={0}
+                                        end={
+                                          tiktokStats[example.tiktokUrl]?.likes ||
+                                          example.fallbackStats?.likes ||
+                                          0
+                                        }
+                                        duration={15}
+                                        separator=","
+                                        formattingFn={formatNumber}
+                                      />
+                                    )}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="flex items-center w-[33%] gap-1">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                  />
+                                </svg>
+                                {statsLoading ? (
+                                  <div className="h-4 w-12 bg-muted animate-pulse rounded" />
+                                ) : (
+                                  <span className="font-medium">
+                                    {cardInView && (
+                                      <CountUp
+                                        start={0}
+                                        end={
+                                          tiktokStats[example.tiktokUrl]
+                                            ?.comments ||
+                                          example.fallbackStats?.comments ||
+                                          0
+                                        }
+                                        duration={15}
+                                        separator=","
+                                        formattingFn={formatNumber}
+                                      />
+                                    )}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          {example.tiktokUrl && (
+                            <motion.a
+                              href={example.tiktokUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-accent-primary hover:underline flex items-center gap-1"
+                              whileHover={{ x: 4 }}
+                            >
+                              View on TikTok
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                />
+                              </svg>
+                            </motion.a>
+                          )}
+                        </div>
+                      </motion.div>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
           </div>
         </section>
+
+        {/* Creator Proof Section - Professional Grid Design */}
+        <section
+          id="creator-proof"
+          className="border-l border-r border-border max-w-6xl mx-auto"
+        >
+          <div ref={creatorProofRef}>
+            {/* Title Area */}
+            <motion.div
+              className="text-center py-10 md:py-12 px-4 md:px-8"
+              initial="hidden"
+              animate={creatorProofInView ? "visible" : "hidden"}
+              variants={fadeInUp}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
+                <svg className="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-green-600 dark:text-green-400 text-xs font-semibold">Verified Results</span>
+              </div>
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-3 text-balance">
+                Proof That It Works
+              </h2>
+              <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
+                Real screenshots from real creators using{" "}
+                <span className="text-accent-primary font-semibold">BR Max</span>.
+                No fake numbers. No edited images. Just results.
+              </p>
+            </motion.div>
+
+            <InnerDivider dotPositions={["left", "50%", "right"]} />
+
+            {/* Creators Grid - All Visible */}
+            <div className="py-8 md:py-10 px-4 md:px-8">
+              <div className="space-y-8 md:space-y-10">
+                {creatorProof.map((creator, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={creatorProofInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                  >
+                    <div className="max-w-5xl mx-auto mb-6">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent-primary to-accent-secondary p-0.5">
+                          <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
+                            <span className="text-lg font-bold text-accent-primary">{creator.handle[1]}</span>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-foreground text-lg">{creator.handle}</h3>
+                          <p className="text-sm text-muted-foreground">{creator.followers} Followers · {creator.totalLikes} Likes</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* ✅ Bento Proof Grid (Profile Left, Earnings+Analytics Stacked Right, Equal Height) */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 max-w-5xl mx-auto items-stretch">
+
+                      {/* ✅ Profile Screenshot (KEEP EXACT HEIGHT) */}
+                      <motion.div
+                        className="lg:col-span-5 rounded-2xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-md transition-all h-[700px]"
+                        whileHover={{ y: -2 }}
+                      >
+                        <div className="px-3 py-2 text-[11px] font-medium bg-muted/40 border-b border-border">
+                          TikTok Profile
+                        </div>
+
+                        <div className="p-2 h-[calc(700px-34px)] flex">
+                          <Image
+                            src={creator.profileImage}
+                            alt={`${creator.handle} profile`}
+                            width={800}
+                            height={1600}
+                            className="w-full h-full object-contain rounded-xl"
+                          />
+                        </div>
+                      </motion.div>
+
+                      {/* ✅ Right Side Stack (MATCH PROFILE HEIGHT) */}
+                      <div className="lg:col-span-7 flex flex-col gap-4 h-[700px]">
+
+                        {/* ✅ Earnings Screenshot (Half Height) */}
+                        <motion.div
+                          className="rounded-2xl overflow-hidden border-2 border-green-500/30 bg-card shadow-sm hover:shadow-md transition-all flex-1"
+                          whileHover={{ y: -2 }}
+                        >
+                          <div className="px-3 py-2 text-[11px] font-medium bg-green-500/10 border-b border-green-500/20 text-green-600 dark:text-green-400">
+                            Earnings Proof
+                          </div>
+
+                          <div className="p-2 h-[calc(100%-34px)] flex">
+                            <Image
+                              src={creator.earningsImage}
+                              alt={`${creator.handle} earnings`}
+                              width={900}
+                              height={700}
+                              className="w-full h-full object-contain rounded-xl"
+                            />
+                          </div>
+                        </motion.div>
+
+                        {/* ✅ Analytics Screenshot (Half Height) */}
+                        <motion.div
+                          className="rounded-2xl overflow-hidden border-2 border-accent-primary/30 bg-card shadow-sm hover:shadow-md transition-all flex-1"
+                          whileHover={{ y: -2 }}
+                        >
+                          <div className="px-3 py-2 text-[11px] font-medium bg-accent-primary/10 border-b border-accent-primary/20 text-accent-primary">
+                            Analytics Proof
+                          </div>
+
+                          <div className="p-2 h-[calc(100%-34px)] flex">
+                            <Image
+                              src={creator.analyticsImage}
+                              alt={`${creator.handle} analytics`}
+                              width={900}
+                              height={900}
+                              className="w-full h-full object-contain rounded-xl"
+                            />
+                          </div>
+                        </motion.div>
+
+                      </div>
+                    </div>
+
+                    {/* ✅ Stats Row Bento */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5 max-w-5xl mx-auto">
+                      <div className="p-3 rounded-xl bg-muted/40 border border-border text-center">
+                        <div className="text-[11px] text-muted-foreground">Post Views</div>
+                        <div className="text-base font-bold">{creator.postViews}</div>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-center">
+                        <div className="text-[11px] text-muted-foreground">Earnings</div>
+                        <div className="text-base font-bold">{creator.earnings}</div>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-muted/40 border border-border text-center">
+                        <div className="text-[11px] text-muted-foreground">Total Likes</div>
+                        <div className="text-base font-bold">{creator.likes}</div>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-accent-primary/10 border border-accent-primary/20 text-center">
+                        <div className="text-[11px] text-muted-foreground">RPM</div>
+                        <div className="text-base font-bold text-accent-primary">
+                          {creator.rpm}
+                        </div>
+                      </div>
+                    </div>
+
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={creatorProofInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-center mt-10 md:mt-12 p-6 md:p-8 rounded-xl bg-gradient-to-br from-accent-primary/5 via-background to-accent-secondary/5 border border-border max-w-2xl mx-auto"
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/20 mb-3">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-primary"></span>
+                  </span>
+                  <span className="text-accent-primary text-[10px] font-medium">Join 1,000+ creators</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                  Your results could be next
+                </h3>
+                <p className="text-sm text-muted-foreground mb-5 max-w-md mx-auto">
+                  Start creating viral content today and see your earnings grow.
+                </p>
+                <Link href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}>
+                  <motion.button
+                    className="px-6 py-3 bg-accent-primary text-white rounded-lg font-semibold text-sm shadow-lg shadow-accent-primary/25 hover:shadow-xl hover:shadow-accent-primary/30 transition-all"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Start Creating Now
+                  </motion.button>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+
 
         <div className="max-w-6xl mx-auto">
           <SectionDivider />
@@ -1220,13 +1426,10 @@ export default function Home() {
               {features.map((feature, index) => (
                 <motion.div
                   key={index}
-                  className={`py-12 px-6 border-border ${
-                    index > 0 ? "lg:border-l" : ""
-                  } ${index === 1 ? "md:border-l" : ""} ${
-                    index === 2 ? "md:border-l lg:border-l" : ""
-                  } ${index === 3 ? "md:border-l" : ""} ${
-                    index > 0 ? "border-t md:border-t lg:border-t-0" : ""
-                  } ${index === 2 ? "lg:border-t-0" : ""}`}
+                  className={`py-12 px-6 border-border ${index > 0 ? "lg:border-l" : ""
+                    } ${index === 1 ? "md:border-l" : ""} ${index === 2 ? "md:border-l lg:border-l" : ""
+                    } ${index === 3 ? "md:border-l" : ""} ${index > 0 ? "border-t md:border-t lg:border-t-0" : ""
+                    } ${index === 2 ? "lg:border-t-0" : ""}`}
                   variants={index % 2 === 0 ? slideInLeft : slideInRight}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
@@ -1407,7 +1610,7 @@ export default function Home() {
                   {bentoItems[3].description}
                 </p>
                 <p className="text-accent-secondary text-xs mt-2 relative z-10">
-                  *Speed depends on video length
+                  *Speed depends on video length & internet
                 </p>
               </motion.div>
 
@@ -1609,19 +1812,19 @@ export default function Home() {
           <div ref={pricingRef}>
             {/* Title area */}
             <motion.div
-              className="text-center py-16 px-8"
+              className="text-center py-12 md:py-16 px-4 md:px-8"
               initial="hidden"
               animate={pricingInView ? "visible" : "hidden"}
               variants={fadeInUp}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-accent-primary text-sm font-medium mb-4">
+              <p className="text-accent-primary text-sm font-medium mb-3 md:mb-4">
                 Pricing
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4 text-balance">
                 Simple, transparent pricing
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
                 Subscribe and keep the momentum going. Continuous work, no interruptions.
               </p>
             </motion.div>
@@ -1630,204 +1833,293 @@ export default function Home() {
               dotPositions={["left", "33.333%", "66.666%", "right"]}
             />
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-3"
-              initial="hidden"
-              animate={pricingInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-            >
-              {packagesLoading ? (
-                // Loading skeleton
-                [...Array(3)].map((_, index) => (
-                  <div
-                    key={index}
-                    className={`py-12 px-8 flex flex-col h-full ${
-                      index > 0 ? "md:border-l border-border" : ""
-                    } ${
-                      index < 2 ? "border-b md:border-b-0 border-border" : ""
-                    }`}
-                  >
-                    <div className="mb-4 h-6" />
-                    <div className="mb-6">
-                      <div className="h-6 w-24 bg-muted animate-pulse rounded mb-2" />
-                      <div className="h-4 w-20 bg-muted animate-pulse rounded" />
-                    </div>
-                    <div className="mb-6">
-                      <div className="h-10 w-28 bg-muted animate-pulse rounded" />
-                    </div>
-                    <div className="space-y-3 mb-8 flex-grow">
-                      {[...Array(5)].map((_, i) => (
-                        <div key={i} className="h-4 bg-muted animate-pulse rounded" />
-                      ))}
-                    </div>
-                    <div className="h-12 bg-muted animate-pulse rounded-lg" />
-                  </div>
-                ))
-              ) : (
-                tokenPackages.map((pkg, index) => (
-                  <motion.div
-                    key={pkg.id}
-                    className={`py-12 px-8 flex flex-col h-full relative ${
-                      index > 0 ? "md:border-l border-border" : ""
-                    } ${
-                      index < tokenPackages.length - 1
-                        ? "border-b md:border-b-0 border-border"
-                        : ""
-                    } ${pkg.popular ? "bg-accent-primary/5" : ""}`}
-                    variants={scaleIn}
-                    transition={{ duration: 0.5, delay: index * 0.15 }}
-                    whileHover={{
-                      backgroundColor: pkg.popular
-                        ? "rgba(var(--accent-primary-rgb), 0.08)"
-                        : "rgba(0,0,0,0.02)",
-                    }}
-                  >
-                    {pkg.popular && (
-                      <>
-                        <motion.div
-                          className="absolute inset-0 border-2 border-accent-primary rounded-lg pointer-events-none"
-                          animate={{
-                            boxShadow: [
-                              "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
-                              "0 0 0 8px rgba(var(--accent-primary-rgb), 0.1)",
-                              "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
-                            ],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "easeInOut",
-                          }}
-                        />
-                        <motion.div
-                          className="inline-block mb-4 px-3 py-1 bg-accent-primary text-white text-xs font-medium rounded-full w-fit relative z-10"
-                          initial={{ scale: 0 }}
-                          animate={pricingInView ? { scale: 1 } : { scale: 0 }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 500,
-                            delay: 0.5,
-                          }}
+            {/* Desktop Grid / Mobile Carousel */}
+            <div className="pricing-container">
+              {/* Mobile Carousel */}
+              <div className="block lg:hidden py-8 px-4">
+                <Swiper
+                  modules={[Navigation, Pagination]}
+                  spaceBetween={16}
+                  slidesPerView={1.3}
+                  centeredSlides={true}
+                  initialSlide={1} // Start with the "popular" plan
+                  navigation
+                  pagination={{
+                    clickable: true,
+                    dynamicBullets: true
+                  }}
+                  breakpoints={{
+                    480: {
+                      slidesPerView: 1.2,
+                      spaceBetween: 20,
+                    },
+                    640: {
+                      slidesPerView: 1.3,
+                      spaceBetween: 24,
+                    },
+                  }}
+                  className="pricing-swiper"
+                >
+                  {packagesLoading ? (
+                    [...Array(3)].map((_, index) => (
+                      <SwiperSlide key={index}>
+                        <div className="py-10 px-6 flex flex-col h-full bg-card rounded-2xl border border-border shadow-sm">
+                          <div className="mb-3 h-6" />
+                          <div className="mb-5">
+                            <div className="h-6 w-24 bg-muted animate-pulse rounded mb-2" />
+                            <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+                          </div>
+                          <div className="mb-5">
+                            <div className="h-10 w-28 bg-muted animate-pulse rounded" />
+                          </div>
+                          <div className="space-y-2.5 mb-6 flex-grow">
+                            {[...Array(5)].map((_, i) => (
+                              <div key={i} className="h-4 bg-muted animate-pulse rounded" />
+                            ))}
+                          </div>
+                          <div className="h-12 bg-muted animate-pulse rounded-lg" />
+                        </div>
+                      </SwiperSlide>
+                    ))
+                  ) : (
+                    tokenPackages.map((pkg, index) => (
+                      <SwiperSlide key={pkg.id}>
+                        <div
+                          className={`py-10 px-6 flex flex-col h-full relative rounded-2xl border-2 shadow-lg ${pkg.popular
+                            ? "bg-accent-primary/5 border-accent-primary"
+                            : "bg-card border-border"
+                            }`}
                         >
-                          Best Value
-                        </motion.div>
-                      </>
-                    )}
-                    {!pkg.popular && <div className="mb-4 h-6" />}
-                    <div className="mb-6">
-                      <h3 className="text-xl font-semibold text-foreground mb-2">
-                        {pkg.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {pkg.tokens.toLocaleString()} tokens
-                      </p>
-                    </div>
-                    <div className="mb-6 flex items-baseline gap-2">
-                      {/* Original Price (Strikethrough) */}
-                      <motion.span
-                        className="text-xl font-medium text-muted-foreground line-through opacity-80"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={
-                          pricingInView
-                            ? { opacity: 0.8, scale: 1 }
-                            : { opacity: 0, scale: 0.9 }
-                        }
-                        transition={{ delay: 0.3 + index * 0.1 }}
-                      >
-                        ${(pkg.priceUSD + 20).toFixed(2)}
-                      </motion.span>
+                          {pkg.popular && (
+                            <div
+                              className="inline-block mb-3 px-3 py-1.5 bg-accent-primary text-white text-xs font-semibold rounded-full w-fit"
+                            >
+                              ⭐ Best Value
+                            </div>
+                          )}
+                          {!pkg.popular && <div className="mb-3 h-6" />}
 
-                      {/* Current Price */}
-                      <span>
-                        <motion.span
-                          className="text-4xl font-bold text-foreground"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={
-                            pricingInView
-                              ? { opacity: 1, y: 0 }
-                              : { opacity: 0, y: 20 }
-                          }
-                          transition={{ delay: 0.3 + index * 0.1 }}
-                        >
-                          ${pkg.priceUSD}
-                        </motion.span>
-                        <span className="text-sm text-muted-foreground">
-                          {" "}
-                          /month
-                        </span>
-                      </span>
+                          <div className="mb-5">
+                            <h3 className="text-2xl font-bold text-foreground mb-2">
+                              {pkg.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground font-medium">
+                              {pkg.tokens.toLocaleString()} tokens
+                            </p>
+                          </div>
+
+                          <div className="mb-6">
+                            <div className="flex flex-col gap-1">
+                              {/* Original Price */}
+                              <span className="text-lg font-medium text-muted-foreground line-through opacity-70">
+                                ${(pkg.priceUSD + 20).toFixed(2)}
+                              </span>
+
+                              {/* Current Price */}
+                              <div className="flex items-baseline gap-1">
+                                <span className="text-4xl font-bold text-foreground">
+                                  ${pkg.priceUSD}
+                                </span>
+                                <span className="text-sm text-muted-foreground">
+                                  /month
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <ul className="space-y-2.5 mb-6 flex-grow">
+                            {pkg.features.map((feature, fIndex) => (
+                              <li
+                                key={fIndex}
+                                className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                              >
+                                <svg
+                                  className="w-5 h-5 text-accent-primary flex-shrink-0 mt-0.5"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2.5}
+                                    d="M5 13l4 4L19 7"
+                                  />
+                                </svg>
+                                <span className="leading-relaxed">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+
+                          <Link href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}>
+                            <button
+                              className={`w-full py-3.5 rounded-xl font-semibold transition-all text-base ${pkg.popular
+                                ? "bg-accent-primary text-white hover:bg-accent-primary/90 shadow-md"
+                                : "bg-foreground text-background hover:opacity-90"
+                                }`}
+                            >
+                              Get started
+                            </button>
+                          </Link>
+                        </div>
+                      </SwiperSlide>
+                    ))
+                  )}
+                </Swiper>
+              </div>
+
+              {/* Desktop Grid */}
+              <div className="hidden lg:grid grid-cols-3">
+                {packagesLoading ? (
+                  [...Array(3)].map((_, index) => (
+                    <div
+                      key={index}
+                      className={`py-12 px-8 flex flex-col h-full ${index > 0 ? "border-l border-border" : ""
+                        }`}
+                    >
+                      <div className="mb-4 h-6" />
+                      <div className="mb-6">
+                        <div className="h-6 w-24 bg-muted animate-pulse rounded mb-2" />
+                        <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+                      </div>
+                      <div className="mb-6">
+                        <div className="h-10 w-28 bg-muted animate-pulse rounded" />
+                      </div>
+                      <div className="space-y-3 mb-8 flex-grow">
+                        {[...Array(5)].map((_, i) => (
+                          <div key={i} className="h-4 bg-muted animate-pulse rounded" />
+                        ))}
+                      </div>
+                      <div className="h-12 bg-muted animate-pulse rounded-lg" />
                     </div>
-                    <ul className="space-y-3 mb-8 flex-grow">
-                      {pkg.features.map((feature, fIndex) => (
-                        <motion.li
-                          key={fIndex}
-                          className="flex items-center gap-2 text-sm text-muted-foreground"
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={
-                            pricingInView
-                              ? { opacity: 1, x: 0 }
-                              : { opacity: 0, x: -10 }
-                          }
-                          transition={{ delay: 0.4 + fIndex * 0.05 }}
-                        >
-                          <svg
-                            className="w-4 h-4 text-accent-primary flex-shrink-0"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
+                  ))
+                ) : (
+                  tokenPackages.map((pkg, index) => (
+                    <motion.div
+                      key={pkg.id}
+                      className={`py-12 px-8 flex flex-col h-full relative ${index > 0 ? "border-l border-border" : ""
+                        } ${pkg.popular ? "bg-accent-primary/5" : ""}`}
+                      whileHover={{
+                        backgroundColor: pkg.popular
+                          ? "rgba(var(--accent-primary-rgb), 0.08)"
+                          : "rgba(0,0,0,0.02)",
+                      }}
+                    >
+                      {pkg.popular && (
+                        <>
+                          <motion.div
+                            className="absolute inset-0 border-2 border-accent-primary rounded-lg pointer-events-none"
+                            animate={{
+                              boxShadow: [
+                                "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
+                                "0 0 0 8px rgba(var(--accent-primary-rgb), 0.1)",
+                                "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
+                              ],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Number.POSITIVE_INFINITY,
+                              ease: "easeInOut",
+                            }}
+                          />
+                          <div className="inline-block mb-4 px-3 py-1 bg-accent-primary text-white text-xs font-medium rounded-full w-fit relative z-10">
+                            Best Value
+                          </div>
+                        </>
+                      )}
+                      {!pkg.popular && <div className="mb-4 h-6" />}
+
+                      <div className="mb-6">
+                        <h3 className="text-xl font-semibold text-foreground mb-2">
+                          {pkg.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {pkg.tokens.toLocaleString()} tokens
+                        </p>
+                      </div>
+
+                      <div className="mb-6 flex items-baseline gap-2">
+                        <span className="text-xl font-medium text-muted-foreground line-through opacity-80">
+                          ${(pkg.priceUSD + 20).toFixed(2)}
+                        </span>
+
+                        <span>
+                          <span className="text-4xl font-bold text-foreground">
+                            ${pkg.priceUSD}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            {" "}
+                            /month
+                          </span>
+                        </span>
+                      </div>
+
+                      <ul className="space-y-3 mb-8 flex-grow">
+                        {pkg.features.map((feature, fIndex) => (
+                          <li
+                            key={fIndex}
+                            className="flex items-center gap-2 text-sm text-muted-foreground"
                           >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                          {feature}
-                        </motion.li>
-                      ))}
-                    </ul>
-                    <Link href="https://accounts.studio.brmax.xyz/sign-up">
-                      <motion.button
-                        className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${
-                          pkg.popular
+                            <svg
+                              className="w-4 h-4 text-accent-primary flex-shrink-0"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <Link href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}>
+                        <motion.button
+                          className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${pkg.popular
                             ? "bg-accent-primary text-white hover:bg-accent-primary/90"
                             : "bg-foreground text-background hover:opacity-90"
-                        }`}
-                        whileHover={{
-                          scale: 1.02,
-                          boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
-                        }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        Get started
-                      </motion.button>
-                    </Link>
-                  </motion.div>
-                ))
-              )}
-            </motion.div>
+                            }`}
+                          whileHover={{
+                            scale: 1.02,
+                            boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
+                          }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          Get started
+                        </motion.button>
+                      </Link>
+                    </motion.div>
+                  ))
+                )}
+              </div>
+            </div>
 
-            {/* Token-based pricing explanation */}
+            {/* Token explanation */}
             <motion.div
-              className="px-8 py-6 text-center"
+              className="px-4 md:px-8 py-6 text-center"
               initial="hidden"
               animate={pricingInView ? "visible" : "hidden"}
               variants={fadeIn}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <p className="text-sm text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 <span className="font-semibold text-foreground">
                   How tokens work:
                 </span>{" "}
                 Each video consumes tokens based on its length and complexity.
-                Shorter videos use fewer tokens (create more videos), while
-                longer videos use more tokens (create fewer videos). Your tokens
-                never expire, so use them at your own pace.
+                Shorter videos use fewer tokens, while longer videos use more tokens.
+                Your tokens never expire, so use them at your own pace.
               </p>
             </motion.div>
           </div>
         </section>
+
+
 
         <div className="max-w-6xl mx-auto">
           <SectionDivider />
@@ -1873,9 +2165,8 @@ export default function Home() {
                     .map((faq, index) => (
                       <motion.div
                         key={index}
-                        className={`border-border ${
-                          index > 0 ? "border-t" : ""
-                        }`}
+                        className={`border-border ${index > 0 ? "border-t" : ""
+                          }`}
                         variants={fadeInUp}
                       >
                         <motion.button
@@ -1931,9 +2222,8 @@ export default function Home() {
                     return (
                       <motion.div
                         key={actualIndex}
-                        className={`border-border ${
-                          index > 0 ? "border-t" : ""
-                        }`}
+                        className={`border-border ${index > 0 ? "border-t" : ""
+                          }`}
                         variants={fadeInUp}
                       >
                         <motion.button

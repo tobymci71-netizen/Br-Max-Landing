@@ -114,7 +114,7 @@ export default function Footer() {
             </li>
             <li>
               <a
-                href="https://accounts.studio.brmax.xyz/sign-up"
+                href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}
                 className="text-muted-foreground hover:text-foreground transition-colors"
               >
                 Get Started

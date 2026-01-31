@@ -131,10 +131,80 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground overflow-x-hidden;
   }
   /* Add smooth scroll behavior */
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+}
+
+
+/* Custom Swiper Navigation Styling */
+.examples-swiper {
+  --swiper-navigation-size: 16px; /* Controls the arrow icon size */
+}
+
+.examples-swiper .swiper-button-next,
+.examples-swiper .swiper-button-prev {
+  color: var(--accent-primary);
+  background: hsl(var(--background));
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid hsl(var(--border));
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.examples-swiper .swiper-button-next:hover,
+.examples-swiper .swiper-button-prev:hover {
+  background: hsl(var(--accent-primary));
+  color: white;
+  border-color: hsl(var(--accent-primary));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.examples-swiper .swiper-button-next::after,
+.examples-swiper .swiper-button-prev::after {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.examples-swiper .swiper-button-disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.examples-swiper .swiper-pagination-bullet {
+  background: hsl(var(--accent-primary));
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+}
+
+.examples-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
+/* Hide navigation on desktop (optional) */
+@media (min-width: 1024px) {
+  .examples-swiper .swiper-button-next,
+  .examples-swiper .swiper-button-prev {
+    display: flex;
+  }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 640px) {
+  .examples-swiper .swiper-button-next,
+  .examples-swiper .swiper-button-prev {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .examples-swiper .swiper-button-next::after,
+  .examples-swiper .swiper-button-prev::after {
+    font-size: 14px;
   }
 }

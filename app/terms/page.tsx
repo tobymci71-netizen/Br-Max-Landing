@@ -102,7 +102,7 @@ export default function TermsAndConditions() {
                   If you have any questions about these Terms & Conditions, please contact us at legal@brmax.xyz
                 </p>
                 <a
-                  href="https://studio.brmax.xyz"
+                  href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-accent-primary hover:underline font-medium"
