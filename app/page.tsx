@@ -9,6 +9,13 @@ import { CardSpotlight } from "@/components/ui/card-spotlight";
 import CountUp from "react-countup";
 import Link from "next/link";
 
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+
 interface TikTokStats {
   likes: number;
   comments: number;
@@ -640,7 +647,7 @@ export default function Home() {
       {/* Affiliate Banner */}
       <Link href="/affiliate">
         <motion.div
-          className="fixed md:hidden block top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary bg-[length:200%_100%] text-white py-3 cursor-pointer"
+          className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-accent-primary via-accent-secondary to-accent-primary bg-[length:200%_100%] text-white py-3 cursor-pointer"
           initial={{ y: -50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           whileHover={{ scale: 1.01 }}
@@ -792,7 +799,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.4 }}
               >
                 <motion.a
-                  href={`https://accounts.${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}/sign-up`}
+                  href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}
                   className="px-8 py-3 bg-accent-primary text-white rounded-lg hover:bg-accent-primary/90 transition-all text-base font-medium"
                   whileHover={{
                     scale: 1.05,
@@ -943,6 +950,7 @@ export default function Home() {
           <SectionDivider />
         </div>
 
+
         <section
           id="examples"
           className="border-l border-r border-border max-w-6xl mx-auto"
@@ -980,198 +988,217 @@ export default function Home() {
               dotPositions={["left", "25%", "50%", "75%", "right"]}
             />
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4"
-              initial="hidden"
-              animate={examplesInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-            >
-              {examples.map((example, index) => {
-                const cardRef = cardRefs[index];
-                const cardInView = cardInViews[index];
+            {/* Carousel Section */}
+            <div className="py-8 px-4">
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={20}
+                slidesPerView={1.3}
+                centeredSlides={false}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                  },
+                  1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 0,
+                  },
+                }}
+                className="examples-swiper"
+              >
+                {examples.map((example, index) => {
+                  const cardRef = cardRefs[index];
+                  const cardInView = cardInViews[index];
 
-                return (
-                  <motion.div
-                    key={index}
-                    ref={cardRef}
-                    className={`group relative overflow-hidden border-border ${index > 0 ? "lg:border-l" : ""
-                      } ${index === 1 ? "md:border-l" : ""} ${index === 2 ? "md:border-l lg:border-l" : ""
-                      } ${index === 3 ? "md:border-l" : ""} ${index > 0 ? "border-t md:border-t lg:border-t-0" : ""
-                      } ${index === 2 ? "lg:border-t-0" : ""}`}
-                    variants={scaleIn}
-                    transition={{ duration: 0.5 }}
-                    whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
-                  >
-                    <div className="aspect-[9/16] relative overflow-hidden">
-                      {example.videoUrl ? (
-                        <video
-                          src={example.videoUrl}
-                          className="w-full h-full object-cover"
-                          autoPlay
-                          muted
-                          loop
-                          controls
-                          controlsList="nofullscreen"
-                          disablePictureInPicture
-                          playsInline
-                        />
-                      ) : (
-                        <motion.img
-                          src={example.thumbnail || "/placeholder.svg"}
-                          alt={example.title}
-                          className="w-full h-full object-cover"
-                          whileHover={{ scale: 1.05 }}
-                          transition={{ duration: 0.4 }}
-                        />
-                      )}
-                    </div>
-                    <div className="p-6 border-t border-border">
-                      <h3 className="font-semibold text-foreground mb-3 text-sm leading-relaxed">
-                        {example.tiktokUrl && tiktokStats[example.tiktokUrl]
-                          ? tiktokStats[example.tiktokUrl].title
-                          : example.fallbackStats?.title || example.title}
-                      </h3>
-
-                      {/* Stats display */}
-                      {example.tiktokUrl && (
-                        <div className="flex items-center gap-4 mb-3 text-xs text-muted-foreground">
-                          <div className="flex items-center w-[33%] gap-1">
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                              />
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                              />
-                            </svg>
-                            {statsLoading ? (
-                              <div className="h-4 w-12 bg-muted animate-pulse rounded" />
-                            ) : (
-                              <span className="font-medium">
-                                {cardInView && (
-                                  <CountUp
-                                    start={0}
-                                    end={
-                                      tiktokStats[example.tiktokUrl]?.views ||
-                                      example.fallbackStats?.views ||
-                                      0
-                                    }
-                                    duration={15}
-                                    separator=","
-                                    formattingFn={formatNumber}
-                                  />
-                                )}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center w-[33%] gap-1">
-                            <svg
-                              className="w-4 h-4"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                            </svg>
-                            {statsLoading ? (
-                              <div className="h-4 w-12 bg-muted animate-pulse rounded" />
-                            ) : (
-                              <span className="font-medium">
-                                {cardInView && (
-                                  <CountUp
-                                    start={0}
-                                    end={
-                                      tiktokStats[example.tiktokUrl]?.likes ||
-                                      example.fallbackStats?.likes ||
-                                      0
-                                    }
-                                    duration={15}
-                                    separator=","
-                                    formattingFn={formatNumber}
-                                  />
-                                )}
-                              </span>
-                            )}
-                          </div>
-                          <div className="flex items-center w-[33%] gap-1">
-                            <svg
-                              className="w-4 h-4"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                              />
-                            </svg>
-                            {statsLoading ? (
-                              <div className="h-4 w-12 bg-muted animate-pulse rounded" />
-                            ) : (
-                              <span className="font-medium">
-                                {cardInView && (
-                                  <CountUp
-                                    start={0}
-                                    end={
-                                      tiktokStats[example.tiktokUrl]
-                                        ?.comments ||
-                                      example.fallbackStats?.comments ||
-                                      0
-                                    }
-                                    duration={15}
-                                    separator=","
-                                    formattingFn={formatNumber}
-                                  />
-                                )}
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      )}
-
-                      {example.tiktokUrl && (
-                        <motion.a
-                          href={example.tiktokUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-sm text-accent-primary hover:underline flex items-center gap-1"
-                          whileHover={{ x: 4 }}
-                        >
-                          View on TikTok
-                          <svg
-                            className="w-4 h-4"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  return (
+                    <SwiperSlide key={index}>
+                      <motion.div
+                        ref={cardRef}
+                        className="group relative overflow-hidden border border-border"
+                        variants={scaleIn}
+                        transition={{ duration: 0.5 }}
+                        whileHover={{ backgroundColor: "rgba(0,0,0,0.02)" }}
+                      >
+                        <div className="aspect-[9/16] relative overflow-hidden">
+                          {example.videoUrl ? (
+                            <video
+                              src={example.videoUrl}
+                              className="w-full h-full object-cover"
+                              autoPlay
+                              muted
+                              loop
+                              controls
+                              controlsList="nofullscreen"
+                              disablePictureInPicture
+                              playsInline
                             />
-                          </svg>
-                        </motion.a>
-                      )}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                          ) : (
+                            <motion.img
+                              src={example.thumbnail || "/placeholder.svg"}
+                              alt={example.title}
+                              className="w-full h-full object-cover"
+                              whileHover={{ scale: 1.05 }}
+                              transition={{ duration: 0.4 }}
+                            />
+                          )}
+                        </div>
+                        <div className="p-6 border-t border-border">
+                          <h3 className="font-semibold text-foreground mb-3 text-sm leading-relaxed">
+                            {example.tiktokUrl && tiktokStats[example.tiktokUrl]
+                              ? tiktokStats[example.tiktokUrl].title
+                              : example.fallbackStats?.title || example.title}
+                          </h3>
+
+                          {/* Stats display */}
+                          {example.tiktokUrl && (
+                            <div className="flex items-center gap-4 mb-3 text-xs text-muted-foreground">
+                              <div className="flex items-center w-[33%] gap-1">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                                  />
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                  />
+                                </svg>
+                                {statsLoading ? (
+                                  <div className="h-4 w-12 bg-muted animate-pulse rounded" />
+                                ) : (
+                                  <span className="font-medium">
+                                    {cardInView && (
+                                      <CountUp
+                                        start={0}
+                                        end={
+                                          tiktokStats[example.tiktokUrl]?.views ||
+                                          example.fallbackStats?.views ||
+                                          0
+                                        }
+                                        duration={15}
+                                        separator=","
+                                        formattingFn={formatNumber}
+                                      />
+                                    )}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="flex items-center w-[33%] gap-1">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                                </svg>
+                                {statsLoading ? (
+                                  <div className="h-4 w-12 bg-muted animate-pulse rounded" />
+                                ) : (
+                                  <span className="font-medium">
+                                    {cardInView && (
+                                      <CountUp
+                                        start={0}
+                                        end={
+                                          tiktokStats[example.tiktokUrl]?.likes ||
+                                          example.fallbackStats?.likes ||
+                                          0
+                                        }
+                                        duration={15}
+                                        separator=","
+                                        formattingFn={formatNumber}
+                                      />
+                                    )}
+                                  </span>
+                                )}
+                              </div>
+                              <div className="flex items-center w-[33%] gap-1">
+                                <svg
+                                  className="w-4 h-4"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2}
+                                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                                  />
+                                </svg>
+                                {statsLoading ? (
+                                  <div className="h-4 w-12 bg-muted animate-pulse rounded" />
+                                ) : (
+                                  <span className="font-medium">
+                                    {cardInView && (
+                                      <CountUp
+                                        start={0}
+                                        end={
+                                          tiktokStats[example.tiktokUrl]
+                                            ?.comments ||
+                                          example.fallbackStats?.comments ||
+                                          0
+                                        }
+                                        duration={15}
+                                        separator=","
+                                        formattingFn={formatNumber}
+                                      />
+                                    )}
+                                  </span>
+                                )}
+                              </div>
+                            </div>
+                          )}
+
+                          {example.tiktokUrl && (
+                            <motion.a
+                              href={example.tiktokUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-accent-primary hover:underline flex items-center gap-1"
+                              whileHover={{ x: 4 }}
+                            >
+                              View on TikTok
+                              <svg
+                                className="w-4 h-4"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  strokeLinecap="round"
+                                  strokeLinejoin="round"
+                                  strokeWidth={2}
+                                  d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                                />
+                              </svg>
+                            </motion.a>
+                          )}
+                        </div>
+                      </motion.div>
+                    </SwiperSlide>
+                  );
+                })}
+              </Swiper>
+            </div>
           </div>
         </section>
+
 
         <div className="max-w-6xl mx-auto">
           <SectionDivider />
@@ -1601,19 +1628,19 @@ export default function Home() {
           <div ref={pricingRef}>
             {/* Title area */}
             <motion.div
-              className="text-center py-16 px-8"
+              className="text-center py-12 md:py-16 px-4 md:px-8"
               initial="hidden"
               animate={pricingInView ? "visible" : "hidden"}
               variants={fadeInUp}
               transition={{ duration: 0.6 }}
             >
-              <p className="text-accent-primary text-sm font-medium mb-4">
+              <p className="text-accent-primary text-sm font-medium mb-3 md:mb-4">
                 Pricing
               </p>
-              <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4 text-balance">
+              <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-3 md:mb-4 text-balance">
                 Simple, transparent pricing
               </h2>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
                 Subscribe and keep the momentum going. Continuous work, no interruptions.
               </p>
             </motion.div>
@@ -1622,199 +1649,293 @@ export default function Home() {
               dotPositions={["left", "33.333%", "66.666%", "right"]}
             />
 
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-3"
-              initial="hidden"
-              animate={pricingInView ? "visible" : "hidden"}
-              variants={staggerContainer}
-            >
-              {packagesLoading ? (
-                // Loading skeleton
-                [...Array(3)].map((_, index) => (
-                  <div
-                    key={index}
-                    className={`py-12 px-8 flex flex-col h-full ${index > 0 ? "md:border-l border-border" : ""
-                      } ${index < 2 ? "border-b md:border-b-0 border-border" : ""
-                      }`}
-                  >
-                    <div className="mb-4 h-6" />
-                    <div className="mb-6">
-                      <div className="h-6 w-24 bg-muted animate-pulse rounded mb-2" />
-                      <div className="h-4 w-20 bg-muted animate-pulse rounded" />
-                    </div>
-                    <div className="mb-6">
-                      <div className="h-10 w-28 bg-muted animate-pulse rounded" />
-                    </div>
-                    <div className="space-y-3 mb-8 flex-grow">
-                      {[...Array(5)].map((_, i) => (
-                        <div key={i} className="h-4 bg-muted animate-pulse rounded" />
-                      ))}
-                    </div>
-                    <div className="h-12 bg-muted animate-pulse rounded-lg" />
-                  </div>
-                ))
-              ) : (
-                tokenPackages.map((pkg, index) => (
-                  <motion.div
-                    key={pkg.id}
-                    className={`py-12 px-8 flex flex-col h-full relative ${index > 0 ? "md:border-l border-border" : ""
-                      } ${index < tokenPackages.length - 1
-                        ? "border-b md:border-b-0 border-border"
-                        : ""
-                      } ${pkg.popular ? "bg-accent-primary/5" : ""}`}
-                    variants={scaleIn}
-                    transition={{ duration: 0.5, delay: index * 0.15 }}
-                    whileHover={{
-                      backgroundColor: pkg.popular
-                        ? "rgba(var(--accent-primary-rgb), 0.08)"
-                        : "rgba(0,0,0,0.02)",
-                    }}
-                  >
-                    {pkg.popular && (
-                      <>
-                        <motion.div
-                          className="absolute inset-0 border-2 border-accent-primary rounded-lg pointer-events-none"
-                          animate={{
-                            boxShadow: [
-                              "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
-                              "0 0 0 8px rgba(var(--accent-primary-rgb), 0.1)",
-                              "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
-                            ],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Number.POSITIVE_INFINITY,
-                            ease: "easeInOut",
-                          }}
-                        />
-                        <motion.div
-                          className="inline-block mb-4 px-3 py-1 bg-accent-primary text-white text-xs font-medium rounded-full w-fit relative z-10"
-                          initial={{ scale: 0 }}
-                          animate={pricingInView ? { scale: 1 } : { scale: 0 }}
-                          transition={{
-                            type: "spring",
-                            stiffness: 500,
-                            delay: 0.5,
-                          }}
+            {/* Desktop Grid / Mobile Carousel */}
+            <div className="pricing-container">
+              {/* Mobile Carousel */}
+              <div className="block lg:hidden py-8 px-4">
+                <Swiper
+                  modules={[Navigation, Pagination]}
+                  spaceBetween={16}
+                  slidesPerView={1.3}
+                  centeredSlides={true}
+                  initialSlide={1} // Start with the "popular" plan
+                  navigation
+                  pagination={{
+                    clickable: true,
+                    dynamicBullets: true
+                  }}
+                  breakpoints={{
+                    480: {
+                      slidesPerView: 1.2,
+                      spaceBetween: 20,
+                    },
+                    640: {
+                      slidesPerView: 1.3,
+                      spaceBetween: 24,
+                    },
+                  }}
+                  className="pricing-swiper"
+                >
+                  {packagesLoading ? (
+                    [...Array(3)].map((_, index) => (
+                      <SwiperSlide key={index}>
+                        <div className="py-10 px-6 flex flex-col h-full bg-card rounded-2xl border border-border shadow-sm">
+                          <div className="mb-3 h-6" />
+                          <div className="mb-5">
+                            <div className="h-6 w-24 bg-muted animate-pulse rounded mb-2" />
+                            <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+                          </div>
+                          <div className="mb-5">
+                            <div className="h-10 w-28 bg-muted animate-pulse rounded" />
+                          </div>
+                          <div className="space-y-2.5 mb-6 flex-grow">
+                            {[...Array(5)].map((_, i) => (
+                              <div key={i} className="h-4 bg-muted animate-pulse rounded" />
+                            ))}
+                          </div>
+                          <div className="h-12 bg-muted animate-pulse rounded-lg" />
+                        </div>
+                      </SwiperSlide>
+                    ))
+                  ) : (
+                    tokenPackages.map((pkg, index) => (
+                      <SwiperSlide key={pkg.id}>
+                        <div
+                          className={`py-10 px-6 flex flex-col h-full relative rounded-2xl border-2 shadow-lg ${pkg.popular
+                              ? "bg-accent-primary/5 border-accent-primary"
+                              : "bg-card border-border"
+                            }`}
                         >
-                          Best Value
-                        </motion.div>
-                      </>
-                    )}
-                    {!pkg.popular && <div className="mb-4 h-6" />}
-                    <div className="mb-6">
-                      <h3 className="text-xl font-semibold text-foreground mb-2">
-                        {pkg.name}
-                      </h3>
-                      <p className="text-sm text-muted-foreground">
-                        {pkg.tokens.toLocaleString()} tokens
-                      </p>
-                    </div>
-                    <div className="mb-6 flex items-baseline gap-2">
-                      {/* Original Price (Strikethrough) */}
-                      <motion.span
-                        className="text-xl font-medium text-muted-foreground line-through opacity-80"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={
-                          pricingInView
-                            ? { opacity: 0.8, scale: 1 }
-                            : { opacity: 0, scale: 0.9 }
-                        }
-                        transition={{ delay: 0.3 + index * 0.1 }}
-                      >
-                        ${(pkg.priceUSD + 20).toFixed(2)}
-                      </motion.span>
+                          {pkg.popular && (
+                            <div
+                              className="inline-block mb-3 px-3 py-1.5 bg-accent-primary text-white text-xs font-semibold rounded-full w-fit"
+                            >
+                              ⭐ Best Value
+                            </div>
+                          )}
+                          {!pkg.popular && <div className="mb-3 h-6" />}
 
-                      {/* Current Price */}
-                      <span>
-                        <motion.span
-                          className="text-4xl font-bold text-foreground"
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={
-                            pricingInView
-                              ? { opacity: 1, y: 0 }
-                              : { opacity: 0, y: 20 }
-                          }
-                          transition={{ delay: 0.3 + index * 0.1 }}
-                        >
-                          ${pkg.priceUSD}
-                        </motion.span>
-                        <span className="text-sm text-muted-foreground">
-                          {" "}
-                          /month
+                          <div className="mb-5">
+                            <h3 className="text-2xl font-bold text-foreground mb-2">
+                              {pkg.name}
+                            </h3>
+                            <p className="text-sm text-muted-foreground font-medium">
+                              {pkg.tokens.toLocaleString()} tokens
+                            </p>
+                          </div>
+
+                          <div className="mb-6">
+                            <div className="flex flex-col gap-1">
+                              {/* Original Price */}
+                              <span className="text-lg font-medium text-muted-foreground line-through opacity-70">
+                                ${(pkg.priceUSD + 20).toFixed(2)}
+                              </span>
+
+                              {/* Current Price */}
+                              <div className="flex items-baseline gap-1">
+                                <span className="text-4xl font-bold text-foreground">
+                                  ${pkg.priceUSD}
+                                </span>
+                                <span className="text-sm text-muted-foreground">
+                                  /month
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <ul className="space-y-2.5 mb-6 flex-grow">
+                            {pkg.features.map((feature, fIndex) => (
+                              <li
+                                key={fIndex}
+                                className="flex items-start gap-2.5 text-sm text-muted-foreground"
+                              >
+                                <svg
+                                  className="w-5 h-5 text-accent-primary flex-shrink-0 mt-0.5"
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    strokeWidth={2.5}
+                                    d="M5 13l4 4L19 7"
+                                  />
+                                </svg>
+                                <span className="leading-relaxed">{feature}</span>
+                              </li>
+                            ))}
+                          </ul>
+
+                          <Link href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}>
+                            <button
+                              className={`w-full py-3.5 rounded-xl font-semibold transition-all text-base ${pkg.popular
+                                  ? "bg-accent-primary text-white hover:bg-accent-primary/90 shadow-md"
+                                  : "bg-foreground text-background hover:opacity-90"
+                                }`}
+                            >
+                              Get started
+                            </button>
+                          </Link>
+                        </div>
+                      </SwiperSlide>
+                    ))
+                  )}
+                </Swiper>
+              </div>
+
+              {/* Desktop Grid */}
+              <div className="hidden lg:grid grid-cols-3">
+                {packagesLoading ? (
+                  [...Array(3)].map((_, index) => (
+                    <div
+                      key={index}
+                      className={`py-12 px-8 flex flex-col h-full ${index > 0 ? "border-l border-border" : ""
+                        }`}
+                    >
+                      <div className="mb-4 h-6" />
+                      <div className="mb-6">
+                        <div className="h-6 w-24 bg-muted animate-pulse rounded mb-2" />
+                        <div className="h-4 w-20 bg-muted animate-pulse rounded" />
+                      </div>
+                      <div className="mb-6">
+                        <div className="h-10 w-28 bg-muted animate-pulse rounded" />
+                      </div>
+                      <div className="space-y-3 mb-8 flex-grow">
+                        {[...Array(5)].map((_, i) => (
+                          <div key={i} className="h-4 bg-muted animate-pulse rounded" />
+                        ))}
+                      </div>
+                      <div className="h-12 bg-muted animate-pulse rounded-lg" />
+                    </div>
+                  ))
+                ) : (
+                  tokenPackages.map((pkg, index) => (
+                    <motion.div
+                      key={pkg.id}
+                      className={`py-12 px-8 flex flex-col h-full relative ${index > 0 ? "border-l border-border" : ""
+                        } ${pkg.popular ? "bg-accent-primary/5" : ""}`}
+                      whileHover={{
+                        backgroundColor: pkg.popular
+                          ? "rgba(var(--accent-primary-rgb), 0.08)"
+                          : "rgba(0,0,0,0.02)",
+                      }}
+                    >
+                      {pkg.popular && (
+                        <>
+                          <motion.div
+                            className="absolute inset-0 border-2 border-accent-primary rounded-lg pointer-events-none"
+                            animate={{
+                              boxShadow: [
+                                "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
+                                "0 0 0 8px rgba(var(--accent-primary-rgb), 0.1)",
+                                "0 0 0 0 rgba(var(--accent-primary-rgb), 0)",
+                              ],
+                            }}
+                            transition={{
+                              duration: 2,
+                              repeat: Number.POSITIVE_INFINITY,
+                              ease: "easeInOut",
+                            }}
+                          />
+                          <div className="inline-block mb-4 px-3 py-1 bg-accent-primary text-white text-xs font-medium rounded-full w-fit relative z-10">
+                            Best Value
+                          </div>
+                        </>
+                      )}
+                      {!pkg.popular && <div className="mb-4 h-6" />}
+
+                      <div className="mb-6">
+                        <h3 className="text-xl font-semibold text-foreground mb-2">
+                          {pkg.name}
+                        </h3>
+                        <p className="text-sm text-muted-foreground">
+                          {pkg.tokens.toLocaleString()} tokens
+                        </p>
+                      </div>
+
+                      <div className="mb-6 flex items-baseline gap-2">
+                        <span className="text-xl font-medium text-muted-foreground line-through opacity-80">
+                          ${(pkg.priceUSD + 20).toFixed(2)}
                         </span>
-                      </span>
-                    </div>
-                    <ul className="space-y-3 mb-8 flex-grow">
-                      {pkg.features.map((feature, fIndex) => (
-                        <motion.li
-                          key={fIndex}
-                          className="flex items-center gap-2 text-sm text-muted-foreground"
-                          initial={{ opacity: 0, x: -10 }}
-                          animate={
-                            pricingInView
-                              ? { opacity: 1, x: 0 }
-                              : { opacity: 0, x: -10 }
-                          }
-                          transition={{ delay: 0.4 + fIndex * 0.05 }}
-                        >
-                          <svg
-                            className="w-4 h-4 text-accent-primary flex-shrink-0"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                          {feature}
-                        </motion.li>
-                      ))}
-                    </ul>
-                    <Link href={`https://accounts.${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}/sign-up`}>
-                      <motion.button
-                        className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${pkg.popular
-                            ? "bg-accent-primary text-white hover:bg-accent-primary/90"
-                            : "bg-foreground text-background hover:opacity-90"
-                          }`}
-                        whileHover={{
-                          scale: 1.02,
-                          boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
-                        }}
-                        whileTap={{ scale: 0.98 }}
-                      >
-                        Get started
-                      </motion.button>
-                    </Link>
-                  </motion.div>
-                ))
-              )}
-            </motion.div>
 
-            {/* Token-based pricing explanation */}
+                        <span>
+                          <span className="text-4xl font-bold text-foreground">
+                            ${pkg.priceUSD}
+                          </span>
+                          <span className="text-sm text-muted-foreground">
+                            {" "}
+                            /month
+                          </span>
+                        </span>
+                      </div>
+
+                      <ul className="space-y-3 mb-8 flex-grow">
+                        {pkg.features.map((feature, fIndex) => (
+                          <li
+                            key={fIndex}
+                            className="flex items-center gap-2 text-sm text-muted-foreground"
+                          >
+                            <svg
+                              className="w-4 h-4 text-accent-primary flex-shrink-0"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M5 13l4 4L19 7"
+                              />
+                            </svg>
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+
+                      <Link href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}>
+                        <motion.button
+                          className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${pkg.popular
+                              ? "bg-accent-primary text-white hover:bg-accent-primary/90"
+                              : "bg-foreground text-background hover:opacity-90"
+                            }`}
+                          whileHover={{
+                            scale: 1.02,
+                            boxShadow: "0 8px 25px -8px rgba(0,0,0,0.3)",
+                          }}
+                          whileTap={{ scale: 0.98 }}
+                        >
+                          Get started
+                        </motion.button>
+                      </Link>
+                    </motion.div>
+                  ))
+                )}
+              </div>
+            </div>
+
+            {/* Token explanation */}
             <motion.div
-              className="px-8 py-6 text-center"
+              className="px-4 md:px-8 py-6 text-center"
               initial="hidden"
               animate={pricingInView ? "visible" : "hidden"}
               variants={fadeIn}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              <p className="text-sm text-muted-foreground max-w-3xl mx-auto">
+              <p className="text-xs md:text-sm text-muted-foreground max-w-3xl mx-auto leading-relaxed">
                 <span className="font-semibold text-foreground">
                   How tokens work:
                 </span>{" "}
                 Each video consumes tokens based on its length and complexity.
-                Shorter videos use fewer tokens (create more videos), while
-                longer videos use more tokens (create fewer videos). Your tokens
-                never expire, so use them at your own pace.
+                Shorter videos use fewer tokens, while longer videos use more tokens.
+                Your tokens never expire, so use them at your own pace.
               </p>
             </motion.div>
           </div>
         </section>
+
+
 
         <div className="max-w-6xl mx-auto">
           <SectionDivider />
