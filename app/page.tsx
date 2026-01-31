@@ -14,6 +14,7 @@ import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Image from "next/image";
 
 
 interface TikTokStats {
@@ -209,6 +210,42 @@ export default function Home() {
       },
     },
   ];
+
+  // Add this new section data after your existing examples array
+  const creatorProof = [
+    {
+      handle: "@speakingtexts",
+      followers: "202.6K",
+      totalLikes: "16.5M",
+      profileImage: "/TiktokProfile_1.png",
+      earningsImage: "/TiktokEarnings_1.webp",
+      analyticsImage: "/TiktokAnalytics_1.webp",
+      earnings: "$13,068.17",
+      period: "30 days",
+      postViews: "87M",
+      likes: "16.5M",
+      rpm: "$0.94",
+    },
+    {
+      handle: "@texty.stories.daily",
+      followers: "550.6K",
+      totalLikes: "29M",
+      profileImage: "/TiktokProfile_2.png",
+      earningsImage: "/TiktokEarnings_2.webp",
+      analyticsImage: "/TiktokAnalytics_2.webp",
+      earnings: "$11,992.88",
+      period: "All time",
+      postViews: "87M",
+      likes: "29M",
+      rpm: "$0.94",
+    },
+  ];
+
+  // Add intersection observer for the new section (add this with your other useInView hooks)
+  const [creatorProofRef, creatorProofInView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  });
 
   // Fetch TikTok stats for all examples with caching
   useEffect(() => {
@@ -1158,6 +1195,194 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Creator Proof Section - Professional Grid Design */}
+        <section
+          id="creator-proof"
+          className="border-l border-r border-border max-w-6xl mx-auto"
+        >
+          <div ref={creatorProofRef}>
+            {/* Title Area */}
+            <motion.div
+              className="text-center py-10 md:py-12 px-4 md:px-8"
+              initial="hidden"
+              animate={creatorProofInView ? "visible" : "hidden"}
+              variants={fadeInUp}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-500/10 border border-green-500/20 mb-4">
+                <svg className="w-3.5 h-3.5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span className="text-green-600 dark:text-green-400 text-xs font-semibold">Verified Results</span>
+              </div>
+              <h2 className="text-2xl md:text-4xl font-bold text-foreground mb-3 text-balance">
+                Proof That It Works
+              </h2>
+              <p className="text-sm md:text-base text-muted-foreground max-w-xl mx-auto">
+                Real screenshots from real creators using{" "}
+                <span className="text-accent-primary font-semibold">BR Max</span>.
+                No fake numbers. No edited images. Just results.
+              </p>
+            </motion.div>
+
+            <InnerDivider dotPositions={["left", "50%", "right"]} />
+
+            {/* Creators Grid - All Visible */}
+            <div className="py-8 md:py-10 px-4 md:px-8">
+              <div className="space-y-8 md:space-y-10">
+                {creatorProof.map((creator, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={creatorProofInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                  >
+                    <div className="max-w-5xl mx-auto mb-6">
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-accent-primary to-accent-secondary p-0.5">
+                          <div className="w-full h-full rounded-full bg-background flex items-center justify-center">
+                            <span className="text-lg font-bold text-accent-primary">{creator.handle[1]}</span>
+                          </div>
+                        </div>
+                        <div>
+                          <h3 className="font-bold text-foreground text-lg">{creator.handle}</h3>
+                          <p className="text-sm text-muted-foreground">{creator.followers} Followers · {creator.totalLikes} Likes</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* ✅ Bento Proof Grid (Profile Left, Earnings+Analytics Stacked Right, Equal Height) */}
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 max-w-5xl mx-auto items-stretch">
+
+                      {/* ✅ Profile Screenshot (KEEP EXACT HEIGHT) */}
+                      <motion.div
+                        className="lg:col-span-5 rounded-2xl overflow-hidden border border-border bg-card shadow-sm hover:shadow-md transition-all h-[700px]"
+                        whileHover={{ y: -2 }}
+                      >
+                        <div className="px-3 py-2 text-[11px] font-medium bg-muted/40 border-b border-border">
+                          TikTok Profile
+                        </div>
+
+                        <div className="p-2 h-[calc(700px-34px)] flex">
+                          <Image
+                            src={creator.profileImage}
+                            alt={`${creator.handle} profile`}
+                            width={800}
+                            height={1600}
+                            className="w-full h-full object-contain rounded-xl"
+                          />
+                        </div>
+                      </motion.div>
+
+                      {/* ✅ Right Side Stack (MATCH PROFILE HEIGHT) */}
+                      <div className="lg:col-span-7 flex flex-col gap-4 h-[700px]">
+
+                        {/* ✅ Earnings Screenshot (Half Height) */}
+                        <motion.div
+                          className="rounded-2xl overflow-hidden border-2 border-green-500/30 bg-card shadow-sm hover:shadow-md transition-all flex-1"
+                          whileHover={{ y: -2 }}
+                        >
+                          <div className="px-3 py-2 text-[11px] font-medium bg-green-500/10 border-b border-green-500/20 text-green-600 dark:text-green-400">
+                            Earnings Proof
+                          </div>
+
+                          <div className="p-2 h-[calc(100%-34px)] flex">
+                            <Image
+                              src={creator.earningsImage}
+                              alt={`${creator.handle} earnings`}
+                              width={900}
+                              height={700}
+                              className="w-full h-full object-contain rounded-xl"
+                            />
+                          </div>
+                        </motion.div>
+
+                        {/* ✅ Analytics Screenshot (Half Height) */}
+                        <motion.div
+                          className="rounded-2xl overflow-hidden border-2 border-accent-primary/30 bg-card shadow-sm hover:shadow-md transition-all flex-1"
+                          whileHover={{ y: -2 }}
+                        >
+                          <div className="px-3 py-2 text-[11px] font-medium bg-accent-primary/10 border-b border-accent-primary/20 text-accent-primary">
+                            Analytics Proof
+                          </div>
+
+                          <div className="p-2 h-[calc(100%-34px)] flex">
+                            <Image
+                              src={creator.analyticsImage}
+                              alt={`${creator.handle} analytics`}
+                              width={900}
+                              height={900}
+                              className="w-full h-full object-contain rounded-xl"
+                            />
+                          </div>
+                        </motion.div>
+
+                      </div>
+                    </div>
+
+                    {/* ✅ Stats Row Bento */}
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-5 max-w-5xl mx-auto">
+                      <div className="p-3 rounded-xl bg-muted/40 border border-border text-center">
+                        <div className="text-[11px] text-muted-foreground">Post Views</div>
+                        <div className="text-base font-bold">{creator.postViews}</div>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-green-500/10 border border-green-500/20 text-green-600 dark:text-green-400 text-center">
+                        <div className="text-[11px] text-muted-foreground">Earnings</div>
+                        <div className="text-base font-bold">{creator.earnings}</div>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-muted/40 border border-border text-center">
+                        <div className="text-[11px] text-muted-foreground">Total Likes</div>
+                        <div className="text-base font-bold">{creator.likes}</div>
+                      </div>
+
+                      <div className="p-3 rounded-xl bg-accent-primary/10 border border-accent-primary/20 text-center">
+                        <div className="text-[11px] text-muted-foreground">RPM</div>
+                        <div className="text-base font-bold text-accent-primary">
+                          {creator.rpm}
+                        </div>
+                      </div>
+                    </div>
+
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* CTA Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={creatorProofInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="text-center mt-10 md:mt-12 p-6 md:p-8 rounded-xl bg-gradient-to-br from-accent-primary/5 via-background to-accent-secondary/5 border border-border max-w-2xl mx-auto"
+              >
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-primary/10 border border-accent-primary/20 mb-3">
+                  <span className="relative flex h-1.5 w-1.5">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-primary opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-accent-primary"></span>
+                  </span>
+                  <span className="text-accent-primary text-[10px] font-medium">Join 1,000+ creators</span>
+                </div>
+                <h3 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                  Your results could be next
+                </h3>
+                <p className="text-sm text-muted-foreground mb-5 max-w-md mx-auto">
+                  Start creating viral content today and see your earnings grow.
+                </p>
+                <Link href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}>
+                  <motion.button
+                    className="px-6 py-3 bg-accent-primary text-white rounded-lg font-semibold text-sm shadow-lg shadow-accent-primary/25 hover:shadow-xl hover:shadow-accent-primary/30 transition-all"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    Start Creating Now
+                  </motion.button>
+                </Link>
+              </motion.div>
+            </div>
+          </div>
+        </section>
+
+
 
         <div className="max-w-6xl mx-auto">
           <SectionDivider />
@@ -1661,8 +1886,8 @@ export default function Home() {
                       <SwiperSlide key={pkg.id}>
                         <div
                           className={`py-10 px-6 flex flex-col h-full relative rounded-2xl border-2 shadow-lg ${pkg.popular
-                              ? "bg-accent-primary/5 border-accent-primary"
-                              : "bg-card border-border"
+                            ? "bg-accent-primary/5 border-accent-primary"
+                            : "bg-card border-border"
                             }`}
                         >
                           {pkg.popular && (
@@ -1729,8 +1954,8 @@ export default function Home() {
                           <Link href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}>
                             <button
                               className={`w-full py-3.5 rounded-xl font-semibold transition-all text-base ${pkg.popular
-                                  ? "bg-accent-primary text-white hover:bg-accent-primary/90 shadow-md"
-                                  : "bg-foreground text-background hover:opacity-90"
+                                ? "bg-accent-primary text-white hover:bg-accent-primary/90 shadow-md"
+                                : "bg-foreground text-background hover:opacity-90"
                                 }`}
                             >
                               Get started
@@ -1856,8 +2081,8 @@ export default function Home() {
                       <Link href={`https://${process.env.NEXT_PUBLIC_STUDIO_BASE_URL}`}>
                         <motion.button
                           className={`w-full py-3 rounded-lg font-medium transition-all mt-auto ${pkg.popular
-                              ? "bg-accent-primary text-white hover:bg-accent-primary/90"
-                              : "bg-foreground text-background hover:opacity-90"
+                            ? "bg-accent-primary text-white hover:bg-accent-primary/90"
+                            : "bg-foreground text-background hover:opacity-90"
                             }`}
                           whileHover={{
                             scale: 1.02,
