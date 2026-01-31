@@ -215,29 +215,29 @@ export default function Home() {
   const creatorProof = [
     {
       handle: "@texty.stories.daily",
-      followers: "202.6K",
-      totalLikes: "16.5M",
+      followers: "550.6K",
+      totalLikes: "29M",
       profileImage: "/TiktokProfile_1.png",
       earningsImage: "/TiktokEarnings_1.webp",
       analyticsImage: "/TiktokAnalytics_1.webp",
-      earnings: "$13,068.17",
+      earnings: "$90,000+",
       period: "30 days",
       postViews: "87M",
-      likes: "16.5M",
-      rpm: "$0.94",
+      likes: "29M",
+      rpm: "$1+",
     },
     {
       handle: "@speakingtexts",
-      followers: "550.6K",
-      totalLikes: "29M",
+      followers: "202.6K",
+      totalLikes: "16.5M",
       profileImage: "/TiktokProfile_2.png",
       earningsImage: "/TiktokEarnings_2.webp",
       analyticsImage: "/TiktokAnalytics_2.webp",
-      earnings: "$11,992.88",
+      earnings: "$90,000+",
       period: "All time",
       postViews: "87M",
-      likes: "29M",
-      rpm: "$0.94",
+      likes: "16.5M",
+      rpm: "$1+",
     },
   ];
 
@@ -786,7 +786,7 @@ export default function Home() {
                 variants={fadeInUp}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                The fastest way to create authentic texting videos that help you grow and <span className="text-green-500">get paid</span> on TikTok, Instagram, and YouTube. Subscribe once and keep earning from your creativity.
+                The fastest way to create authentic texting videos that help you grow and <span className="text-green-500 font-bold italic">get paid</span> on TikTok, Instagram, and YouTube. Subscribe once and keep earning from your creativity.
               </motion.p>
 
               <motion.div
