@@ -1882,7 +1882,9 @@ export default function Home() {
                       </SwiperSlide>
                     ))
                   ) : (
-                    tokenPackages.map((pkg, index) => (
+                    tokenPackages.map((pkg, index) => {
+                      const isCreatorPackage = pkg.name.toLowerCase().includes("creator");
+                      return (
                       <SwiperSlide key={pkg.id}>
                         <div
                           className={`py-10 px-6 flex flex-col h-full relative rounded-2xl border-2 shadow-lg ${pkg.popular
@@ -1898,6 +1900,21 @@ export default function Home() {
                             </div>
                           )}
                           {!pkg.popular && <div className="mb-3 h-6" />}
+
+                          {isCreatorPackage && (
+                            <div
+                              className="relative mb-4 overflow-hidden rounded-xl border border-accent-primary/50 bg-gradient-to-br from-accent-primary/20 via-accent-primary/15 to-accent-secondary/15 px-3 py-2.5"
+                              style={{ boxShadow: "0 0 24px rgba(var(--accent-primary-rgb), 0.45), 0 0 48px rgba(var(--accent-primary-rgb), 0.2), inset 0 1px 0 rgba(255,255,255,0.2)" }}
+                            >
+                              <span className="absolute right-2 top-1.5 text-base text-accent-primary opacity-90">✨</span>
+                              <p className="text-sm font-bold text-accent-primary">
+                                First month just $1
+                              </p>
+                              <p className="text-xs font-medium text-muted-foreground mt-0.5">
+                                Then ${pkg.priceUSD}/mo from month 2
+                              </p>
+                            </div>
+                          )}
 
                           <div className="mb-5">
                             <h3 className="text-2xl font-bold text-foreground mb-2">
@@ -1918,7 +1935,7 @@ export default function Home() {
                               {/* Current Price */}
                               <div className="flex items-baseline gap-1">
                                 <span className="text-4xl font-bold text-foreground">
-                                  ${pkg.priceUSD}
+                                  ${isCreatorPackage ? "1" : pkg.priceUSD}
                                 </span>
                                 <span className="text-sm text-muted-foreground">
                                   /month
@@ -1963,7 +1980,8 @@ export default function Home() {
                           </Link>
                         </div>
                       </SwiperSlide>
-                    ))
+                    );
+                    })
                   )}
                 </Swiper>
               </div>
@@ -1994,7 +2012,9 @@ export default function Home() {
                     </div>
                   ))
                 ) : (
-                  tokenPackages.map((pkg, index) => (
+                  tokenPackages.map((pkg, index) => {
+                    const isCreatorPackage = pkg.name.toLowerCase().includes("creator");
+                    return (
                     <motion.div
                       key={pkg.id}
                       className={`py-12 px-8 flex flex-col h-full relative ${index > 0 ? "border-l border-border" : ""
@@ -2029,6 +2049,31 @@ export default function Home() {
                       )}
                       {!pkg.popular && <div className="mb-4 h-6" />}
 
+                      {isCreatorPackage && (
+                        <motion.div
+                          className="relative mb-5 overflow-hidden rounded-xl border border-accent-primary/50 bg-gradient-to-br from-accent-primary/20 via-accent-primary/15 to-accent-secondary/15 px-4 py-3"
+                          style={{
+                            boxShadow: "0 0 28px rgba(var(--accent-primary-rgb), 0.45), 0 0 56px rgba(var(--accent-primary-rgb), 0.2), inset 0 1px 0 rgba(255,255,255,0.25)",
+                          }}
+                          animate={{
+                            boxShadow: [
+                              "0 0 28px rgba(var(--accent-primary-rgb), 0.45), 0 0 56px rgba(var(--accent-primary-rgb), 0.2), inset 0 1px 0 rgba(255,255,255,0.25)",
+                              "0 0 36px rgba(var(--accent-primary-rgb), 0.55), 0 0 64px rgba(var(--accent-primary-rgb), 0.25), inset 0 1px 0 rgba(255,255,255,0.25)",
+                              "0 0 28px rgba(var(--accent-primary-rgb), 0.45), 0 0 56px rgba(var(--accent-primary-rgb), 0.2), inset 0 1px 0 rgba(255,255,255,0.25)",
+                            ],
+                          }}
+                          transition={{ duration: 2.5, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
+                        >
+                          <span className="absolute right-3 top-2 text-lg text-accent-primary opacity-90">✨</span>
+                          <p className="text-sm font-bold text-accent-primary">
+                            First month just $1
+                          </p>
+                          <p className="text-xs font-medium text-muted-foreground mt-1">
+                            Then ${pkg.priceUSD}/mo from month 2
+                          </p>
+                        </motion.div>
+                      )}
+
                       <div className="mb-6">
                         <h3 className="text-xl font-semibold text-foreground mb-2">
                           {pkg.name}
@@ -2045,7 +2090,7 @@ export default function Home() {
 
                         <span>
                           <span className="text-4xl font-bold text-foreground">
-                            ${pkg.priceUSD}
+                            ${isCreatorPackage ? "1" : pkg.priceUSD}
                           </span>
                           <span className="text-sm text-muted-foreground">
                             {" "}
@@ -2094,7 +2139,8 @@ export default function Home() {
                         </motion.button>
                       </Link>
                     </motion.div>
-                  ))
+                    );
+                  })
                 )}
               </div>
             </div>
