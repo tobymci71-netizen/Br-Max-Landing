@@ -516,7 +516,7 @@ export default function Home() {
     {
       question: "Can I get a refund?",
       answer:
-        "No! We do not offer a refund.",
+        "We do not offer refunds. However, you can cancel your subscription anytime—no long-term commitment required.",
     },
     {
       question: "What happens with my subscription?",
