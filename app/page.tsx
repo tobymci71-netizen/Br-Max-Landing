@@ -516,7 +516,7 @@ export default function Home() {
     {
       question: "Can I get a refund?",
       answer:
-        "Yes! We offer a money-back guarantee. If you're not satisfied with BR Max, contact us within 24 hours of purchase for a full refund. See our refund policy for details.",
+        "No! We do not offer a refund.",
     },
     {
       question: "What happens with my subscription?",

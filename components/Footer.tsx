@@ -89,14 +89,6 @@ export default function Footer() {
                 Terms of Service
               </Link>
             </li>
-            <li>
-              <Link
-                href="/refund"
-                className="text-muted-foreground hover:text-foreground transition-colors"
-              >
-                Refund Policy
-              </Link>
-            </li>
           </ul>
         </div>
 
